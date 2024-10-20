@@ -1,106 +1,69 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #f0f0f0;
 }
 
 .container {
-    width: 80%;
-    margin: 0 auto;
+    max-width: 600px;
+    margin: 40px auto;
     padding: 20px;
     background-color: #fff;
+    border: 1px solid #ddd;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-}
-
-header {
-    text-align: center;
-    margin-bottom: 20px;
 }
 
 h1 {
-    font-size: 36px;
-    color: #333;
+    text-align: center;
 }
 
-h2 {
-    font-size: 24px;
-    color: #666;
-}
-
-.add-contact, .contact-list {
-    margin-bottom: 30px;
-}
-
-.form-group {
-    margin-bottom: 15px;
+form {
+    margin-bottom: 20px;
 }
 
 label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-input[type="text"], input[type="email"] {
+input, textarea {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
 }
 
 button {
-    padding: 10px 15px;
-    background-color: #28a745;
+    background-color: #4CAF50;
     color: #fff;
+    padding: 10px 20px;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #3e8e41;
 }
 
-.contact-list input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+#contact-list {
+    margin-top: 20px;
 }
 
-ul {
+#contacts {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-li {
+.contact {
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ccc;
 }
 
-li:last-child {
+.contact:last-child {
     border-bottom: none;
 }
 
-li span {
-    display: block;
-}
-
-li span.name {
-    font-weight: bold;
-    font-size: 18px;
-}
-
-li span.email, li span.phone {
-    font-size: 14px;
-    color: #666;
+.contact h3 {
+    margin-top: 0;
 }
