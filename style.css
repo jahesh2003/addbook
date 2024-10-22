@@ -1,187 +1,220 @@
-/* Previous CSS remains same until form styling */
+@import url("https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 
-/* Enhanced Form Styling */
-#contact-form input {
-    padding: 14px 20px;
-    margin: 8px 10px;
-    font-size: 16px;
-    border: 1.5px solid rgba(255, 128, 0, 0.2);
-    border-radius: 16px;  /* Increased border radius */
-    background: var(--darker-gray);
-    color: var(--text-primary);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+body {
+    font-family: "Inria Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    min-height: 100vh;
+    background-color: #000000; /* OLED black background */
+    color: #e0e0e0; /* Light text for dark theme */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#contact-form input:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 128, 0, 0.2);
-    transform: translateY(-2px);
-    border-color: var(--mclaren-orange);
-}
-
-/* Modern Buttons */
-.button {
-    cursor: pointer;
-    padding: 14px 28px;
-    border: none;
-    border-radius: 16px;  /* Smoother radius */
-    font-size: 16px;
-    font-weight: 500;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    background: linear-gradient(135deg, var(--mclaren-orange), #FF9933);
-    color: var(--dark-bg);
-    backdrop-filter: blur(5px);
-    box-shadow: 0 4px 15px var(--shadow-orange);
-    position: relative;
-    overflow: hidden;
-}
-
-.button::before {
-    content: '';
-    position: absolute;
-    top: 0;
+#contact-form-container {
+    height: 100%;
+    width: 450px; 
+    position: fixed;
+    z-index: 1;
+    top: 0; 
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(255, 255, 255, 0.1), transparent);
-    transition: transform 0.3s ease;
+    background-color: #121212; /* Dark background */
+    border-right: 2px solid #404040; 
+    padding-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); /* Deep shadow for depth */
+    border-radius: 16px; /* Smooth edges for form container */
 }
 
-.button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px var(--shadow-orange);
+#error-message, #confirm-delete {
+    margin: 24px;
+    border: 2px solid #ff0000;
+    padding: 12px;
+    font-size: 16px;
+    text-align: center;
+    color: #ff6666;
+    background-color: rgba(255, 0, 0, 0.1); /* Subtle background for error messages */
+    border-radius: 12px; /* Rounded error messages */
+    box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3); 
 }
 
-.button:hover::before {
-    transform: translateY(-100%);
+.hidden {
+    display: none;
 }
 
-/* Action Buttons */
-.action-button {
-    padding: 10px 20px;
-    border: 1.5px solid var(--mclaren-orange);
-    border-radius: 12px;  /* Smoother radius */
-    background: var(--dark-gray);
-    color: var(--mclaren-orange);
-    backdrop-filter: blur(5px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 20px auto;    
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8); /* Stronger shadow for dark mode */
+    padding: 20px;
+    border-radius: 12px; /* Smooth form edges */
+    background-color: #1a1a1a; /* Dark container background */
 }
 
-.action-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 128, 0, 0.1),
-        transparent
-    );
-    transition: left 0.5s ease;
+#contact-form input {
+    padding: 12px;
+    margin: 5px 10px;
+    font-size: 16px;
+    border: 1px solid #555; /* Darker input borders */
+    background-color: #222; /* Dark input field */
+    color: #f0f0f0; /* Light text inside input */
+    border-radius: 12px; /* Smooth, rounded inputs */
+    transition: all 0.3s ease;
 }
 
-.action-button:hover::before {
-    left: 100%;
+#contact-form input:hover, #contact-form input:focus {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); 
+    border-color: #ff8000; /* McLaren orange focus border */
 }
 
-/* Search Bar */
+#contact-form-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff; /* Light text */
+}
+
+#add-btn, #save-btn {
+    cursor: pointer;
+    background-color: #ff8000; /* McLaren orange */
+    color: white;
+    border: none;
+    padding: 12px;
+    margin: 5px 10px;
+    font-size: 16px;
+    border-radius: 12px; /* Rounded button edges */
+    transition: all 0.3s ease;
+}
+
+#add-btn:hover, #save-btn:hover {
+    background-color: #ff9d35; /* Lighter McLaren orange on hover */
+    box-shadow: 0 4px 12px rgba(255, 128, 0, 0.4); /* Orange shadow on hover */
+}
+
 #search-bar {
+    display: block;
     width: 680px;
-    padding: 16px 24px;
-    border: 1.5px solid rgba(255, 128, 0, 0.2);
-    border-radius: 20px;  /* Increased radius for smoother look */
-    background: var(--darker-gray);
-    color: var(--text-primary);
-    backdrop-filter: blur(5px);
-    box-shadow: 0 4px 15px var(--shadow-color);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 24px 0px 24px 24px;
+    padding: 8px;
+    font-size: 16px;
+    background-color: #222; /* Dark input */
+    color: #f0f0f0; /* Light text inside input */
+    border: 1px solid #555;
+    border-radius: 12px; /* Rounded search bar */
+    transition: box-shadow 0.3s ease;
 }
 
 #search-bar:focus {
-    outline: none;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px var(--shadow-orange);
-    border-color: var(--mclaren-orange);
+    box-shadow: 0 2px 8px rgba(255, 128, 0, 0.4); /* Orange shadow on focus */
 }
 
-/* Error Messages */
-#error-message, #confirm-delete {
-    margin: 24px;
-    border-radius: 20px;  /* Smoother radius */
-    border: 1.5px solid var(--mclaren-orange);
-    padding: 20px;
-    font-size: 16px;
-    text-align: center;
-    color: var(--mclaren-orange);
-    background: rgba(26, 26, 26, 0.95);
-    backdrop-filter: blur(5px);
-    box-shadow: 0 4px 15px var(--shadow-orange);
-}
-
-/* Table Styling Update */
 #contact-table {
-    width: 70%;
-    border-radius: 20px;  /* Smoother radius */
-    overflow: hidden;
-    box-shadow: 0 8px 30px var(--shadow-color);
-    background: var(--darker-gray);
+    width: 68%;
+    border-collapse: collapse;
+    margin: 20px;
+    background-color: #1a1a1a; /* Dark table background */
 }
 
-#contact-table th:first-child {
-    border-top-left-radius: 20px;
+#contact-table thead {
+    background-color: #222;
 }
 
-#contact-table th:last-child {
-    border-top-right-radius: 20px;
+#contact-table th {
+    background-color: #333; /* Darker table headers */
+    color: white;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #555;
+    border-radius: 8px 8px 0 0; /* Slightly rounded table header edges */
 }
 
-/* New Smooth Input Focus Effect */
-.input-wrapper {
-    position: relative;
-    margin: 10px 0;
+#contact-table tbody {
+    background-color: #1a1a1a;
 }
 
-.input-wrapper::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: var(--mclaren-orange);
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
+#contact-table td {
+    padding: 12px;
+    border-bottom: 1px solid #444; /* Lighter dark for rows */
+    color: #e0e0e0; /* Light text for readability */
+    border-radius: 0 0 8px 8px; /* Rounded bottom edges of table rows */
 }
 
-.input-wrapper:focus-within::after {
-    width: calc(100% - 20px);
+#contact-list {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #121212;
+    padding: 24px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+    border-radius: 16px; /* Smooth edges for contact list */
 }
 
-/* Smooth Button Press Effect */
-.button:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 10px var(--shadow-orange);
+#contact-list-headings {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    padding: 10px;
+    border-bottom: 2px solid #555;
+    color: #ff8000; /* McLaren orange headings */
+    border-radius: 8px; /* Rounded headings */
 }
 
-/* Refined Hover States */
-.button, .action-button, #search-bar {
-    will-change: transform;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+#edit-btn, #delete-btn {
+    font-size: 24px;
+    margin-left: 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 12px; /* Rounded button edges */
+    background-color: transparent;
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-/* Smooth Loading State */
-@keyframes smoothPulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
+#edit-btn {
+    padding: 6px 6px 4px 10px;
+    color: #b3b3b3; /* Light gray for edit */
 }
 
-.loading {
-    animation: smoothPulse 1.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+#delete-btn {
+    padding: 6px 12px;
+    color: #ff6666; /* Light red for delete */
+}
+
+#delete-btn:hover {
+    color: whitesmoke;
+    background-color: #a42424;
+    box-shadow: 0 2px 8px rgba(164, 36, 36, 0.4); 
+}
+
+#confirm-delete button {
+    font-size: 18px;
+    margin: 8px;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    border-radius: 12px; /* Rounded edges for confirmation buttons */
+    color: whitesmoke;
+    transition: background-color 0.3s ease;
+}
+
+#confirm-delete button#confirm-no {
+    background-color: #727272;
+}
+
+#confirm-delete button#confirm-yes {
+    background-color: #ff0000;
+}
+
+#confirm-delete button#confirm-yes:hover {
+    background-color: #a42424;
+    box-shadow: 0 4px 10px rgba(164, 36, 36, 0.4);
+}
+
+#confirm-delete button#confirm-no:hover {
+    background-color: #404040;
+    box-shadow: 0 4px 10px rgba(64, 64, 64, 0.4);
 }
