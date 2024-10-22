@@ -1,154 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
-
-/* Global Styles */
-body {
-    font-family: "Inria Sans", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    min-height: 100vh;
-    background-color: #f4f0ec;
-    line-height: 1.6;
-    color: #333;
-}
-
-/* Typography */
-h1 {
-    background-color: #109090;
-    margin: 0;
-    padding: 28px;
-    text-align: left;
-    color: whitesmoke;
-    border-radius: 0 0 10px 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Buttons */
-.button {
-    position: relative;
-    display: inline-block;
-    padding: 15px 30px;
-    border-radius: 5px;
-    font-size: 16px;
-    text-decoration: none;
-    color: #fff;
-    background-color: #109090;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
-}
-
-.button:active {
-    transform: translateY(2px);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Form Container */
-#contact-form-container {
-    height: 100%;
-    width: 450px; 
-    position: fixed;
-    z-index: 1;
-    top: 0; 
-    left: 0;
-    background: linear-gradient(to right, #f4f0ec, #eaeaea);
-    border-right: 2px groove #404040; 
-    padding-top: 20px;
-    float: left;
-    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Error Message */
-#error-message, #confirm-delete {
-    margin: 24px;
-    border: 2px solid #ff0000;
-    padding: 12px;
-    font-size: 16px;
-    text-align: center;
-    color: #ff0000;
-    background-color: #ffe6e6;
-}
-
-.hidden {
-    display: none;
-}
-
-/* Contact Form */
-#contact-form {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    margin: 20px auto;    
-}
-
-#contact-form input {
-    padding: 12px;
-    margin: 5px 10px 5px 10px;
-    font-size: 16px;
-}
-
-#contact-form-title {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-}
-
-/* Search Bar */
-#search-bar {
-    display: block;
-    width: 680px;
-    margin: 24px 0px 24px 24px;
-    padding: 8px;
-    font-size: 16px;
-}
-
-#search-bar:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Contact Table */
-#contact-table {
-    width: 68%;
-    border-collapse: collapse;
-    margin: 20px;
-}
-
-#contact-table thead {
-    background-color: whitesmoke;
-}
-
-#contact-table th {
-    background: linear-gradient(to bottom, #404040, #333);
-    color: white;
-    padding: 12px;
-    text-align: left;
-    border-bottom: 2px solid #dddd; 
-    border-radius: 5px 5px 0 0;
-}
-
 #contact-table tbody {
     background-color: whitesmoke;
 }
 
 #contact-table td {
     padding: 12px;
-    border-bottom: 1px solid #dddd; 
+    border-bottom: 1px solid #dddd;
 }
 
-/* Contact List */
 #contact-list {
     max-width: 600px;
     margin: 20px auto;
     background-color: whitesmoke;
     padding: 24px;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 #contact-list-headings {
@@ -158,9 +23,6 @@ h1 {
     font-weight: bold;
     padding: 10px;
     border-bottom: 2px solid #dddd;
-    background: linear-gradient(to right, #109090, #007070);
-    color: whitesmoke;
-    border-radius: 5px 5px 0 0;
 }
 
 /* Edit and Delete Buttons */
@@ -170,25 +32,31 @@ h1 {
     border: none;
     cursor: pointer;
     border-radius: 4px;
-    background-color: whitesmoke;
-}
-
-#edit-btn {
-    padding: 6px 6px 4px 10px;
+    background-color: transparent;
     color: #727272;
+    transition: all 0.3s ease;
 }
 
-#delete-btn {
-    padding: 6px 12px;
-    color: #a42424;
+#edit-btn:hover {
+    color: #109090;
 }
 
 #delete-btn:hover {
-    color: whitesmoke;
-    background-color: #800000;
+    color: #ff0000;
 }
 
 /* Confirm Delete Dialog */
+#confirm-delete {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffe6e6;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 #confirm-delete button {
     font-size: 18px;
     margin: 8px;
@@ -197,6 +65,7 @@ h1 {
     cursor: pointer;
     border-radius: 4px;
     color: whitesmoke;
+    transition: all 0.3s ease;
 }
 
 #confirm-delete button#confirm-no {
@@ -213,45 +82,39 @@ h1 {
 
 #confirm-delete button#confirm-no:hover {
     background-color: #404040;
-} 
-
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
 }
 
-.fade-in {
-    animation: fadeIn 0.5s ease-out forwards;
+/* Transparent Buttons */
+.transparent-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #727272;
+    transition: all 0.3s ease;
 }
 
-@keyframes slideUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+.transparent-btn:hover {
+    color: #109090;
 }
 
-.slide-up {
-    animation: slideUp 0.5s ease-out forwards;
-}
-
-/* Responsive Design */
+/* Media Queries for Responsive Design */
 @media (max-width: 768px) {
     #contact-form-container {
         width: 100%;
-        position: static;
-        border-right: none;
-    }
-    
-    #address-container {
+        position: relative;
         margin-left: 0;
     }
-    
-    #search-bar {
+
+    .address-container {
+        position: relative;
+        margin-left: 0;
+    }
+
+    #contact-table {
         width: 100%;
     }
-    
-    #contact-table,
-    #contact-list {
+
+    #search-bar {
         width: 100%;
     }
 }
