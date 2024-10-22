@@ -1,284 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Address Book</title>
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
-
-        body {
-            font-family: "Inria Sans", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            min-height: 100vh;
-            background-color: whitesmoke;
-        }
-
-        #contact-form-container {
-            height: 100%;
-            width: 450px;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #f4f0ec;
-            border-right: 2px groove #404040;
-            padding-top: 20px;
-            float: left;
-        }
-
-        #error-message, #confirm-delete {
-            margin: 24px;
-            border: 2px solid #ff0000;
-            padding: 12px;
-            font-size: 16px;
-            text-align: center;
-            color: #ff0000;
-            background-color: #ffe6e6;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        #contact-form {
-            display: flex;
-            flex-direction: column;
-            width: 400px;
-            margin: 20px auto;
-        }
-
-        #contact-form input {
-            padding: 12px;
-            margin: 5px 10px;
-            font-size: 16px;
-        }
-
-        #contact-form-title {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        #add-btn, #save-btn {
-            cursor: pointer;
-            background-color: #008080;
-            color: white;
-            border: none;
-            padding: 12px;
-            margin: 5px 10px;
-            font-size: 16px;
-        }
-
-        #add-btn:hover, #save-btn:hover {
-            background-color: #109090;
-        }
-
-        .address-container {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            margin-left: 440px; 
-        }
-
-        h1 {
-            background-color: #109090; 
-            margin: 0; 
-            padding: 28px; 
-            text-align: left; 
-            color: whitesmoke; 
-        }
-
-        #search-bar {
-           display:block; 
-           width:680px; 
-           margin:24px; 
-           padding:8px; 
-           font-size:16px; 
-        }
-
-        #contact-table {
-           width:68%; 
-           border-collapse:collapse; 
-           margin20px; 
-        }
-
-        #contact-table thead {
-           background-color:white; 
-        }
-
-        #contact-table th {
-           background-color:#404040; 
-           color:white; 
-           padding12px; 
-           text-align:left; 
-           border-bottom2px solid#dddd; 
-        }
-
-        #contact-table tbody {
-           background-color:white; 
-        }
-
-        #contact-table td {
-           padding12px; 
-           border-bottom1px solid#dddd; 
-        }
-
-        #contact-list {
-           max-width600px; 
-           margin20px auto; 
-           background-color:white; 
-           padding24px; 
-           box-shadow0 0 6px rgba(0,0,0,.1); 
-        }
-
-        #contact-list-headings {
-           display:flex; 
-           justify-contentspace-between; 
-           align-items:center; 
-           font-weight:bold; 
-           padding10px; 
-           border-bottom2px solid#dddd;  
-        }
-        
-       /* Additional styles for buttons */
-       #edit-btn, #delete-btn {
-          font-size24px;  
-          margin-left12px;  
-          border:none;  
-          cursor:pointer;  
-          border-radius4px;  
-          background-color:white;  
-       }
-       
-       /* Specific styles for edit and delete buttons */
-       #edit-btn { padding6px 6px 4px10px;color:#727272;}
-       #delete-btn { padding6px12px;color:#a42424;}
-       /* Hover effect for delete button */
-       #delete-btn:hover { color:white;background-color:#800000;}
-       
-       /* Styles for confirmation delete buttons */
-       #confirm-delete button { font-size18px;margin8px;padding8px;border:none;}
-       /* Specific styles for yes and no buttons */
-       #confirm-delete button#confirm-no {background-color:#727272;}
-       #confirm-delete button#confirm-yes {background-color:#ff0000;}
-       
-       /* Hover effects for confirmation buttons */
-       #confirm-delete button#confirm-yes:hover {background-color:#a42424;}
-       #confirm-delete button#confirm-no:hover {background-color:#404040;}
-    </style>
-</head>
-<body>
-
-    <div id="contact-form-container">
-        <h1 id="contact-form-title">Add Contact</h1>
-        
-        <div id="error-message" class="hidden"></div>
-
-        <form id="contact-form">
-             <input type="text" id="name" placeholder="Name" required />
-             <input type="text" id="surname" placeholder="Surname" required />
-             <input type="text" id="phone" placeholder="Phone Number" required />
-             <input type="text" id="address" placeholder="Address" required />
-             <button type="button" id="add-btn">Add Contact</button>
-             <button type="button" id="save-btn" style="display:none;">Save Contact</button>
-         </form>
-    </div>
-
-    <div class="address-container">
-         <input type="text" id="search-bar" placeholder="Search Contacts..." />
-         <div id="contact-list">
-             <div id="contact-list-headings">
-                 <span>Name</span>
-                 <span>Surname</span>
-                 <span>Phone Number</span>
-                 <span>Address</span>
-                 <span>Actions</span>
-             </div>
-             <table id="contact-table">
-                 <thead>
-                     <tr>
-                         <th>Name</th>
-                         <th>Surname</th>
-                         <th>Phone Number</th>
-                         <th>Address</th>
-                         <th>Actions</th>
-                     </tr>
-                 </thead>
-                 <tbody></tbody>
-             </table>
-         </div>
-     </div>
-
-     <!-- Confirmation Delete Modal -->
-     <div id="confirm-delete" class="hidden">
-         Are you sure you want to delete this contact?
-         <button id="confirm-yes">Yes</button>
-         <button id="confirm-no">No</button>
-     </div>
-
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-     <script>
-         $(document).ready(function() { 
-             let contacts = []; 
-             let currentEditIndex = null;
-
-             function showError(message) { $('#error-message').text(message).removeClass('hidden'); } 
-
-             function hideError() { $('#error-message').addClass('hidden').text(''); } 
-
-             function isDuplicate(phone, excludeIndex) { return contacts.some((contact, index) => contact.phone === phone && index !== excludeIndex); } 
-
-             function validateForm() { 
-                 let isValid = true;
-
-                 $('#contact-form input').each(function () { if ($(this).val().trim() === '') { isValid = false; showError('Please fill out all the empty fields.'); return false;} });
-
-                 const phone = $('#phone').val(); 
-
-                 if (isValid && phone.length !== 11) { showError('Please enter a valid 11-digit phone number.'); isValid = false;} 
-
-                 if (isValid && isDuplicate(phone, currentEditIndex)) { showError('Phone number already exists in address book.'); isValid = false;} 
-
-                 if (isValid) { hideError(); } 
-
-                 return isValid; 
-             } 
-
-             function clearForm() { $('#contact-form')[0].reset(); $('#add-btn').show(); $('#save-btn').hide(); currentEditIndex = null;} 
-
-             function addContact() { if (!validateForm()) return;
-
-                 const contact = { name: $('#name').val(), surname: $('#surname').val(), phone: $('#phone').val(), address: $('#address').val() }
-                 contacts.push(contact); displayContacts(); clearForm(); } 
-
-             $('#add-btn').click(function(event) { event.preventDefault(); addContact(); }); 
-
-             function displayContacts() { contacts.sort((a, b) => a.name.localeCompare(b.name)); $('#contact-list tbody').empty();
-
-                 contacts.forEach((contact, index) => { let actionColumn = ''; if (currentEditIndex === null || currentEditIndex !== index) { actionColumn = `<button class='edit-btn' data-index='${index}'>Edit</button><button class='delete-btn' data-index='${index}'>Delete</button>`;} else { actionColumn = `<button class='save-btn' data-index='${index}'>Save</button>`;} 
-
-                 $('#contact-list tbody').append(`<tr><td>${contact.name}</td><td>${contact.surname}</td><td>${contact.phone}</td><td>${contact.address}</td><td>${actionColumn}</td></tr>`); }); 
-
-                 $('.edit-btn').click(function() { currentEditIndex = $(this).data('index'); const contact = contacts[currentEditIndex]; $('#name').val(contact.name); $('#surname').val(contact.surname); $('#phone').val(contact.phone); $('#address').val(contact.address); $('#add-btn').hide(); $('#save-btn').show(); }); 
-
-                 $('.delete-btn').click(function() { deleteIndex = $(this).data('index'); $('#confirm-delete').removeClass('hidden'); }); });
-             
-             // Handle confirm delete
-             $('#confirm-yes').click(function() {
-                contacts.splice(deleteIndex, 1);
-                displayContacts();
-                $('#confirm-delete').addClass('hidden');
-             });
-
-             $('#confirm-no').click(function() {
-                $('#confirm-delete').addClass('hidden');
-             });
-         });
-     </script>
-
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+        <title>Address Book Demo</title>
+        <link rel="icon" type="image/png" href="favicon-32x32.png">
+        <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <!-- Contact Form -->
+        <div id="contact-form-container">
+            <!-- Error Message -->
+            <div id="error-message" class="hidden"></div> 
+            <form id="contact-form">
+                <span id="contact-form-title">Add Contact</span>
+                <input type="text" id="name" placeholder="Name" required>
+                <input type="text" id="surname" placeholder="Surname" required>
+                <input type="number" id="phone" placeholder="Phone Number" maxlength="11" required >
+                <input type="text" id="address" placeholder="Address" required>
+                <button id="add-btn">Add Contact</button>
+                <button id="save-btn" style="display:none;">Save Contact</button>
+            </form>
+            <!-- Confirm Delete Message -->
+            <div id="confirm-delete" class="hidden">
+                <p>Are you sure you want to delete this contact?</p>
+                <button id="confirm-yes">Yes</button>
+                <button id="confirm-no">No</button>
+            </div>
+        </div>
+        <div class="address-container">
+            <h1 id="address-book-title">Address Book</h1>
+            <!-- Search Bar -->
+            <input type="text" id="search-bar" placeholder="Search...">
+            <!-- Display Contacts-->
+            <table id="contact-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Phone Number</th>
+                        <th>Address</th>
+                        <th></th>
+                    </tr>
+                </thead>
+            <tbody id="contact-list">
+                    <!-- Contact info will appear here | Refer to displayContacts() function in script.js -->
+            </tbody>
+            </table>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="script.js"></script>
+    </body>
 </html>
