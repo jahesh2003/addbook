@@ -1,0 +1,35 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Address Book - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Address Book</div>
+        <div class="nav-links">
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="add-contact.html">Add Contact</a>
+            <a href="view-contacts.html">View Contacts</a>
+            <a href="search.html">Search</a>
+            <a href="#" id="logoutBtn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <h1>Welcome to Your Address Book</h1>
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <h3>Total Contacts</h3>
+                <p id="totalContacts">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Recent Contacts</h3>
+                <div id="recentContacts"></div>
+            </div>
+        </div>
+    </div>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
