@@ -3,40 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Address Book</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Simple Address Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #35424a;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input[type="text"], input[type="email"] {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px;
+            background-color: #35424a;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .contact-list {
+            margin-top: 20px;
+        }
+        .contact-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Address Book</h1>
-    </header>
 
-    <main>
-        <section id="add-contact">
-            <h2>Add New Contact</h2>
-            <form id="contact-form">
-                <label for="name">Name:</label>
-                <input type="text" id="name" required>
+<header>
+    <h1>Simple Address Book</h1>
+</header>
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" required>
+<div class="container">
+    <form id="contactForm">
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <button type="submit">Add Contact</button>
+    </form>
 
-                <label for="phone">Phone:</label>
-                <input type="tel" id="phone" required>
+    <div class="contact-list" id="contactList"></div>
+</div>
 
-                <label for="address">Address:</label>
-                <textarea id="address" rows="3" required></textarea>
+<script>
+    const contactForm = document.getElementById('contactForm');
+    const contactList = document.getElementById('contactList');
 
-                <button type="submit">Add Contact</button>
-            </form>
-        </section>
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
 
-        <section id="contact-list">
-            <h2>Contact List</h2>
-            <ul id="contacts"></ul>
-        </section>
-    </main>
+        const contactItem = document.createElement('div');
+        contactItem.classList.add('contact-item');
+        contactItem.textContent = `Name: ${name}, Email: ${email}`;
+        
+        contactList.appendChild(contactItem);
 
-    <script src="script.js"></script>
+        contactForm.reset();
+    });
+</script>
+
 </body>
 </html>
