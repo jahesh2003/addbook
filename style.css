@@ -1,120 +1,100 @@
-#contact-table tbody {
-    background-color: whitesmoke;
+/* Import a futuristic font (optional) */
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap");
+
+body {
+  font-family: "Rubik", sans-serif; /* Use the futuristic font if imported */
+  font-weight: 300; /* Light weight for a modern feel */
+  font-style: normal;
+  min-height: 100vh;
+  background-color: #f0f0f0; /* Lighter background for a futuristic aesthetic */
 }
 
-#contact-table td {
-    padding: 12px;
-    border-bottom: 1px solid #dddd;
+#contact-form-container {
+  height: 100%;
+  width: 450px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #e0e0e0; /* Consistent background color */
+  border-right: none; /* Remove border for cleaner look */
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Subtle 3D shadow for depth */
+  transition: all 0.3s ease-in-out; /* Add smooth transitions */
 }
 
-#contact-list {
-    max-width: 600px;
-    margin: 20px auto;
-    background-color: whitesmoke;
-    padding: 24px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+#contact-form-container:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
 }
 
-#contact-list-headings {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-    padding: 10px;
-    border-bottom: 2px solid #dddd;
+#error-message, #confirm-delete {
+  margin: 24px;
+  border: 1px solid #ff0000; /* Thinner border */
+  padding: 12px;
+  font-size: 16px;
+  text-align: center;
+  color: #ff0000;
+  background-color: #ffe6e6;
+  border-radius: 4px; /* Rounded corners for a softer look */
 }
 
-/* Edit and Delete Buttons */
-#edit-btn, #delete-btn {
-    font-size: 24px;
-    margin-left: 12px;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    background-color: transparent;
-    color: #727272;
-    transition: all 0.3s ease;
+.hidden {
+  display: none;
 }
 
-#edit-btn:hover {
-    color: #109090;
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: 20px auto;
 }
 
-#delete-btn:hover {
-    color: #ff0000;
+#contact-form input {
+  padding: 12px;
+  margin: 5px 10px; /* Adjust margins slightly */
+  font-size: 16px;
+  border: 1px solid #ccc; /* Light border for better separation */
+  border-radius: 4px; /* Rounded corners for a modern touch */
+  transition: all 0.3s ease-in-out;
 }
 
-/* Confirm Delete Dialog */
-#confirm-delete {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ffe6e6;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+#contact-form input:focus {
+  border-color: #008080; /* Highlight on focus */
+  outline: none; /* Remove default outline */
 }
 
-#confirm-delete button {
-    font-size: 18px;
-    margin: 8px;
-    padding: 8px;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    color: whitesmoke;
-    transition: all 0.3s ease;
+#contact-form-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
 }
 
-#confirm-delete button#confirm-no {
-    background-color: #727272;
+#add-btn, #save-btn {
+  cursor: pointer;
+  padding: 12px 20px; /* Increase button size slightly */
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: transparent; /* Transparent buttons for a futuristic look */
+  color: #333; /* Darker text for better contrast */
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2); /* Subtle 3D shadow */
+  transition: all 0.3s ease-in-out;
 }
 
-#confirm-delete button#confirm-yes {
-    background-color: #ff0000;
+#add-btn:hover, #save-btn:hover {
+  background-color: #e0e0e0; /* Background color on hover */
+  color: #000; /* Text color on hover */
 }
 
-#confirm-delete button#confirm-yes:hover {
-    background-color: #a42424;
+.address-container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  margin-left: 440px;
 }
 
-#confirm-delete button#confirm-no:hover {
-    background-color: #404040;
-}
-
-/* Transparent Buttons */
-.transparent-btn {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    color: #727272;
-    transition: all 0.3s ease;
-}
-
-.transparent-btn:hover {
-    color: #109090;
-}
-
-/* Media Queries for Responsive Design */
-@media (max-width: 768px) {
-    #contact-form-container {
-        width: 100%;
-        position: relative;
-        margin-left: 0;
-    }
-
-    .address-container {
-        position: relative;
-        margin-left: 0;
-    }
-
-    #contact-table {
-        width: 100%;
-    }
-
-    #search-bar {
-        width: 100%;
-    }
-}
+h1 {
+  background-color: #008080; /* Use darker blue for header */
+  margin:
