@@ -15,10 +15,10 @@ body {
     z-index: 1;
     top: 0; 
     left: 0;
-    background-color: #f4f0ec;
+    background-color: rgba(244, 240, 236, 0.9);
     border-right: 2px groove #404040; 
     padding-top: 20px;
-    float: left;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 #error-message, #confirm-delete {
@@ -28,7 +28,7 @@ body {
     font-size: 16px;
     text-align: center;
     color: #ff0000;
-    background-color: #ffe6e6;
+    background-color: rgba(255, 230, 230, 0.9);
 }
 
 .hidden {
@@ -44,8 +44,15 @@ body {
 
 #contact-form input {
     padding: 12px;
-    margin: 5px 10px 5px 10px;
+    margin: 5px 10px;
     font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease-in-out;
+}
+
+#contact-form input:hover {
+    border-color: #008080;
 }
 
 #contact-form-title {
@@ -58,25 +65,25 @@ body {
 
 #add-btn, #save-btn {
     cursor: pointer;
-    background-color: #008080;
-    color: white;
-    border: none;
+    background-color: transparent; /* Transparent background */
+    color: #008080; /* Text color */
+    border: 2px solid #008080; /* Border color */
     padding: 12px;
-    margin: 5px 10px 5px 10px;
+    margin: 5px auto; /* Center buttons */
     font-size: 16px;
+    border-radius: 5px; /* Rounded corners */
+    transition: all 0.3s ease-in-out; /* Smooth transition */
 }
 
-#add-btn:hover, #save-btn:hover  {
-    cursor: pointer;
-    background-color: #109090;
-    color: white;
+#add-btn:hover, #save-btn:hover {
+    background-color: rgba(16, 144, 144, 0.8); /* Semi-transparent on hover */
+    color: white; /* Change text color on hover */
 }
 
 .address-container {
     position: absolute;
     top: 0; 
-    width: 100%;
-    margin-left: 440px;
+    width: calc(100% - 450px); /* Adjust width dynamically */
 }
 
 h1 {
@@ -89,105 +96,105 @@ h1 {
 
 #search-bar {
     display: block;
-    width: 680px;
-    margin: 24px 0px 24px 24px;
+    width: calc(100% - 48px); /* Full width minus margins */
+    margin-left: auto; 
+    margin-right:auto; 
     padding: 8px;
     font-size: 16px;
 }
 
 #contact-table {
-    width: 68%;
+    width: calc(100% - 40px); /* Full width minus margins */
     border-collapse: collapse;
-    margin: 20px;
 }
 
 #contact-table thead {
-    background-color: whitesmoke;
+   background-color:#f4f4f4; /* Light background for header */
 }
 
 #contact-table th {
-    background-color: #404040;
-    color: white;
-    padding: 12px;
-    text-align: left;
-    border-bottom: 2px solid #dddd;
+   background-color:#404040; 
+   color:white; 
+   padding :12px ;
+   text-align:left ;
+   border-bottom :2 px solid #dddd ;
+   box-shadow : inset -1 px -1 px rgba (255 ,255 ,255 ,0.3) , inset -1 px -1 px rgba (0 ,0 ,0 ,0.2) ; /* Inner shadow effect */
 }
 
 #contact-table tbody {
-    background-color: whitesmoke;
+   background-color :whitesmoke ;
 }
 
 #contact-table td {
-    padding: 12px;
-    border-bottom: 1px solid #dddd; 
+   padding :12 px ;
+   border-bottom :1 px solid #dddd ; 
+   transition :background-color .3 s ease-in-out ; /* Smooth transition for hover effect */
+}
+
+#contact-table td:hover {
+   background-color :rgba (16 ,144 ,144 ,0.1) ; /* Light hover effect */
 }
 
 #contact-list {
-    max-width: 600px;
-    margin: 20px auto;
-    background-color: whitesmoke;
-    padding: 24px;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+   max-width :600 px ;
+   margin :20 px auto ;
+   background-color :whitesmoke ;
+   padding :24 px ;
+   box-shadow :0 4 px 10 px rgba (0 ,0 ,0 ,0.2) ; /* Enhanced shadow effect */
+   border-radius :8 px ; /* Rounded corners for the list */
 }
 
 #contact-list-headings {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-    padding: 10px;
-    border-bottom: 2px solid #dddd;
+   display:flex ;
+   justify-content :space-between ;
+   align-items:center ;
+   font-weight:bold ;
+   padding :10 px ;
+   border-bottom :2 px solid #dddd ;
 }
 
 #edit-btn, #delete-btn {
-    font-size: 24px;
-    margin-left: 12px;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    background-color: whitesmoke;
+   font-size :24 px ;
+   margin-left :12 px ;
+   border:none ;
+   cursor:pointer ;
+   border-radius :4 px ;
+   background-color :transparent ; /* Transparent button */
+   transition :all .3 s ease-in-out ; /* Smooth transition */
 }
 
-#edit-btn {
-    padding: 6px 6px 4px 10px;
-    color: #727272;
-}
-
-#delete-btn {
-    padding: 6px 12px;
-    color: #a42424;
+#edit-btn:hover {
+   color:#006666 ; /* Change color on hover */
 }
 
 #delete-btn:hover {
-    color: whitesmoke;
-    background-color: #800000;
+   color:white ; 
+   background-color:#800000 ; /* Dark red on hover */
 }
 
 #confirm-delete button {
-    font-size: 18px;
-    margin: 8px;
-    padding: 8px;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    color: whitesmoke;
+   font-size :18 px ;
+   margin :8 px ;
+   padding :8 px ;
+   border:none ;
+   cursor:pointer ;
+   border-radius :4 px ;
+   color:white ; 
+   transition :background-color .3 s ease-in-out ; /* Smooth transition for confirm buttons */
 }
 
 #confirm-delete button#confirm-no {
-    background-color: #727272;
+   background-color:#727272 ; 
 }
 
 #confirm-delete button#confirm-yes {
-    background-color: #ff0000;
+   background-color:#ff0000 ; 
 }
 
 #confirm-delete button#confirm-yes:hover {
-    background-color: #a42424;
+   background-color:#a42424 ; 
 }
 
 #confirm-delete button#confirm-no:hover {
-    background-color: #404040;
+   background-color:#404040 ; 
 }
-
-
-
