@@ -1,94 +1,401 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Address Book</title>
+    <title>Address Book Application</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
-        header {
-            background: #35424a;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
+
+        body {
+            background-color: #f5f5f5;
+            line-height: 1.6;
         }
+
+        /* Container styles */
         .container {
-            width: 90%;
-            max-width: 800px;
-            margin: auto;
-            overflow: hidden;
             padding: 20px;
-            background: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        form {
+
+        /* Page visibility */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Login styles */
+        .login-container {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
         }
-        input[type="text"], input[type="email"] {
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
+
+        .login-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
         }
-        button {
-            padding: 10px;
-            background-color: #35424a;
+
+        /* Navigation styles */
+        .navbar {
+            background-color: #333;
+            padding: 1rem 2rem;
             color: white;
-            border: none;
-            cursor: pointer;
         }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .nav-links button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            width: auto;
+        }
+
+        .nav-links button:hover {
+            background-color: #555;
+            border-radius: 4px;
+        }
+
+        /* Form styles */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
         button:hover {
             background-color: #45a049;
         }
-        .contact-list {
-            margin-top: 20px;
+
+        /* Contact list styles */
+        .contact-card {
+            background: white;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .contact-item {
-            border-bottom: 1px solid #ccc;
-            padding: 10px 0;
+
+        .search-box {
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .button-group button {
+            width: auto;
         }
     </style>
 </head>
 <body>
+    <!-- Login Page -->
+    <div id="loginPage" class="page active">
+        <div class="login-container">
+            <div class="login-box">
+                <h2>Address Book Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
-<header>
-    <h1>Simple Address Book</h1>
-</header>
+    <!-- Main Application -->
+    <div id="mainApp" class="page">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-links">
+                <button onclick="showPage('dashboard')">Dashboard</button>
+                <button onclick="showPage('addContact')">Add Contact</button>
+                <button onclick="showPage('viewContacts')">View Contacts</button>
+                <button onclick="showPage('search')">Search</button>
+                <button onclick="logout()">Logout</button>
+            </div>
+        </nav>
 
-<div class="container">
-    <form id="contactForm">
-        <input type="text" id="name" placeholder="Name" required>
-        <input type="email" id="email" placeholder="Email" required>
-        <button type="submit">Add Contact</button>
-    </form>
+        <!-- Dashboard Page -->
+        <div id="dashboard" class="container page">
+            <h2>Welcome to Your Address Book</h2>
+            <div class="contact-card">
+                <h3>Total Contacts: <span id="totalContacts">0</span></h3>
+            </div>
+            <div class="contact-card">
+                <h3>Recent Contacts</h3>
+                <div id="recentContacts"></div>
+            </div>
+        </div>
 
-    <div class="contact-list" id="contactList"></div>
-</div>
+        <!-- Add Contact Page -->
+        <div id="addContact" class="container page">
+            <h2>Add New Contact</h2>
+            <form id="addContactForm">
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <button type="submit">Add Contact</button>
+            </form>
+        </div>
 
-<script>
-    const contactForm = document.getElementById('contactForm');
-    const contactList = document.getElementById('contactList');
+        <!-- View Contacts Page -->
+        <div id="viewContacts" class="container page">
+            <h2>All Contacts</h2>
+            <div id="contactsList"></div>
+        </div>
 
-    contactForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
+        <!-- Search Page -->
+        <div id="search" class="container page">
+            <h2>Search Contacts</h2>
+            <div class="search-box">
+                <div class="form-group">
+                    <input type="text" id="searchInput" placeholder="Search contacts...">
+                </div>
+            </div>
+            <div id="searchResults"></div>
+        </div>
+    </div>
 
-        const contactItem = document.createElement('div');
-        contactItem.classList.add('contact-item');
-        contactItem.textContent = `Name: ${name}, Email: ${email}`;
-        
-        contactList.appendChild(contactItem);
+    <script>
+        // Address Book Class
+        class AddressBook {
+            constructor() {
+                this.contacts = JSON.parse(localStorage.getItem('contacts')) || [];
+            }
 
-        contactForm.reset();
-    });
-</script>
+            addContact(contact) {
+                contact.id = Date.now();
+                contact.dateAdded = new Date().toISOString();
+                this.contacts.push(contact);
+                this.saveContacts();
+                return contact;
+            }
 
+            deleteContact(id) {
+                this.contacts = this.contacts.filter(contact => contact.id !== id);
+                this.saveContacts();
+            }
+
+            getContacts() {
+                return this.contacts;
+            }
+
+            searchContacts(query) {
+                query = query.toLowerCase();
+                return this.contacts.filter(contact => 
+                    contact.firstName.toLowerCase().includes(query) ||
+                    contact.lastName.toLowerCase().includes(query) ||
+                    contact.email.toLowerCase().includes(query) ||
+                    contact.phone.includes(query)
+                );
+            }
+
+            saveContacts() {
+                localStorage.setItem('contacts', JSON.stringify(this.contacts));
+            }
+        }
+
+        // Initialize AddressBook
+        const addressBook = new AddressBook();
+
+        // Page Navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            
+            if (pageId === 'dashboard') {
+                updateDashboard();
+            } else if (pageId === 'viewContacts') {
+                displayContacts();
+            }
+        }
+
+        // Login Functionality
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === 'admin' && password === 'password') {
+                localStorage.setItem('isLoggedIn', 'true');
+                document.getElementById('loginPage').classList.remove('active');
+                document.getElementById('mainApp').classList.add('active');
+                showPage('dashboard');
+            } else {
+                alert('Invalid credentials');
+            }
+        });
+
+        // Logout Functionality
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            document.getElementById('mainApp').classList.remove('active');
+            document.getElementById('loginPage').classList.add('active');
+        }
+
+        // Add Contact Functionality
+        document.getElementById('addContactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const newContact = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                address: document.getElementById('address').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value
+            };
+
+            addressBook.addContact(newContact);
+            this.reset();
+            alert('Contact added successfully!');
+            showPage('viewContacts');
+        });
+
+        // Update Dashboard
+        function updateDashboard() {
+            const contacts = addressBook.getContacts();
+            document.getElementById('totalContacts').textContent = contacts.length;
+            
+            const recentContactsDiv = document.getElementById('recentContacts');
+            recentContactsDiv.innerHTML = '';
+            
+            contacts.slice(-5).reverse().forEach(contact => {
+                const div = document.createElement('div');
+                div.textContent = `${contact.firstName} ${contact.lastName}`;
+                recentContactsDiv.appendChild(div);
+            });
+        }
+
+        // Display Contacts
+        function displayContacts() {
+            const contactsList = document.getElementById('contactsList');
+            contactsList.innerHTML = '';
+            
+            addressBook.getContacts().forEach(contact => {
+                const contactCard = document.createElement('div');
+                contactCard.className = 'contact-card';
+                contactCard.innerHTML = `
+                    <h3>${contact.firstName} ${contact.lastName}</h3>
+                    <p>Email: ${contact.email}</p>
+                    <p>Phone: ${contact.phone}</p>
+                    <p>Address: ${contact.address}</p>
+                    <div class="button-group">
+                        <button onclick="deleteContact(${contact.id})">Delete</button>
+                    </div>
+                `;
+                contactsList.appendChild(contactCard);
+            });
+        }
+
+        // Delete Contact
+        function deleteContact(id) {
+            if (confirm('Are you sure you want to delete this contact?')) {
+                addressBook.deleteContact(id);
+                displayContacts();
+                updateDashboard();
+            }
+        }
+
+        // Search Functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const query = e.target.value;
+            const results = addressBook.searchContacts(query);
+            const searchResults = document.getElementById('searchResults');
+            searchResults.innerHTML = '';
+            
+            results.forEach(contact => {
+                const contactCard = document.createElement('div');
+                contactCard.className = 'contact-card';
+                contactCard.innerHTML = `
+                    <h3>${contact.firstName} ${contact.lastName}</h3>
+                    <p>Email: ${contact.email}</p>
+                    <p>Phone: ${contact.phone}</p>
+                    <p>Address: ${contact.address}</p>
+                `;
+                searchResults.appendChild(contactCard);
+            });
+        });
+
+        // Check Login Status on Load
+        window.onload = function() {
+            if (localStorage.getItem('isLoggedIn')) {
+                document.getElementById('loginPage').classList.remove('active');
+                document.getElementById('mainApp').classList.add('active');
+                showPage('dashboard');
+            }
+        };
+    </script>
 </body>
 </html>
