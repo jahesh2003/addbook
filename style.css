@@ -1,13 +1,54 @@
 @import url("https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 
+/* Global Styles */
 body {
     font-family: "Inria Sans", sans-serif;
     font-weight: 400;
     font-style: normal;
     min-height: 100vh;
-    background-color: whitesmoke;
+    background-color: #f4f0ec;
+    line-height: 1.6;
+    color: #333;
 }
 
+/* Typography */
+h1 {
+    background-color: #109090;
+    margin: 0;
+    padding: 28px;
+    text-align: left;
+    color: whitesmoke;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Buttons */
+.button {
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #109090;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+}
+
+.button:active {
+    transform: translateY(2px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Container */
 #contact-form-container {
     height: 100%;
     width: 450px; 
@@ -15,12 +56,14 @@ body {
     z-index: 1;
     top: 0; 
     left: 0;
-    background-color: rgba(244, 240, 236, 0.9);
+    background: linear-gradient(to right, #f4f0ec, #eaeaea);
     border-right: 2px groove #404040; 
     padding-top: 20px;
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
+    float: left;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Error Message */
 #error-message, #confirm-delete {
     margin: 24px;
     border: 2px solid #ff0000;
@@ -28,13 +71,14 @@ body {
     font-size: 16px;
     text-align: center;
     color: #ff0000;
-    background-color: rgba(255, 230, 230, 0.9);
+    background-color: #ffe6e6;
 }
 
 .hidden {
     display: none;
 }
 
+/* Contact Form */
 #contact-form {
     display: flex;
     flex-direction: column;
@@ -44,15 +88,8 @@ body {
 
 #contact-form input {
     padding: 12px;
-    margin: 5px 10px;
+    margin: 5px 10px 5px 10px;
     font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    transition: border-color 0.3s ease-in-out;
-}
-
-#contact-form input:hover {
-    border-color: #008080;
 }
 
 #contact-form-title {
@@ -63,138 +100,158 @@ body {
     color: #333;
 }
 
-#add-btn, #save-btn {
-    cursor: pointer;
-    background-color: transparent; /* Transparent background */
-    color: #008080; /* Text color */
-    border: 2px solid #008080; /* Border color */
-    padding: 12px;
-    margin: 5px auto; /* Center buttons */
-    font-size: 16px;
-    border-radius: 5px; /* Rounded corners */
-    transition: all 0.3s ease-in-out; /* Smooth transition */
-}
-
-#add-btn:hover, #save-btn:hover {
-    background-color: rgba(16, 144, 144, 0.8); /* Semi-transparent on hover */
-    color: white; /* Change text color on hover */
-}
-
-.address-container {
-    position: absolute;
-    top: 0; 
-    width: calc(100% - 450px); /* Adjust width dynamically */
-}
-
-h1 {
-    background-color: #109090;
-    margin: 0;
-    padding: 28px;
-    text-align: left;
-    color: whitesmoke;
-}
-
+/* Search Bar */
 #search-bar {
     display: block;
-    width: calc(100% - 48px); /* Full width minus margins */
-    margin-left: auto; 
-    margin-right:auto; 
+    width: 680px;
+    margin: 24px 0px 24px 24px;
     padding: 8px;
     font-size: 16px;
 }
 
+#search-bar:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Contact Table */
 #contact-table {
-    width: calc(100% - 40px); /* Full width minus margins */
+    width: 68%;
     border-collapse: collapse;
+    margin: 20px;
 }
 
 #contact-table thead {
-   background-color:#f4f4f4; /* Light background for header */
+    background-color: whitesmoke;
 }
 
 #contact-table th {
-   background-color:#404040; 
-   color:white; 
-   padding :12px ;
-   text-align:left ;
-   border-bottom :2 px solid #dddd ;
-   box-shadow : inset -1 px -1 px rgba (255 ,255 ,255 ,0.3) , inset -1 px -1 px rgba (0 ,0 ,0 ,0.2) ; /* Inner shadow effect */
+    background: linear-gradient(to bottom, #404040, #333);
+    color: white;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #dddd; 
+    border-radius: 5px 5px 0 0;
 }
 
 #contact-table tbody {
-   background-color :whitesmoke ;
+    background-color: whitesmoke;
 }
 
 #contact-table td {
-   padding :12 px ;
-   border-bottom :1 px solid #dddd ; 
-   transition :background-color .3 s ease-in-out ; /* Smooth transition for hover effect */
+    padding: 12px;
+    border-bottom: 1px solid #dddd; 
 }
 
-#contact-table td:hover {
-   background-color :rgba (16 ,144 ,144 ,0.1) ; /* Light hover effect */
-}
-
+/* Contact List */
 #contact-list {
-   max-width :600 px ;
-   margin :20 px auto ;
-   background-color :whitesmoke ;
-   padding :24 px ;
-   box-shadow :0 4 px 10 px rgba (0 ,0 ,0 ,0.2) ; /* Enhanced shadow effect */
-   border-radius :8 px ; /* Rounded corners for the list */
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: whitesmoke;
+    padding: 24px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
 #contact-list-headings {
-   display:flex ;
-   justify-content :space-between ;
-   align-items:center ;
-   font-weight:bold ;
-   padding :10 px ;
-   border-bottom :2 px solid #dddd ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    padding: 10px;
+    border-bottom: 2px solid #dddd;
+    background: linear-gradient(to right, #109090, #007070);
+    color: whitesmoke;
+    border-radius: 5px 5px 0 0;
 }
 
+/* Edit and Delete Buttons */
 #edit-btn, #delete-btn {
-   font-size :24 px ;
-   margin-left :12 px ;
-   border:none ;
-   cursor:pointer ;
-   border-radius :4 px ;
-   background-color :transparent ; /* Transparent button */
-   transition :all .3 s ease-in-out ; /* Smooth transition */
+    font-size: 24px;
+    margin-left: 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: whitesmoke;
 }
 
-#edit-btn:hover {
-   color:#006666 ; /* Change color on hover */
+#edit-btn {
+    padding: 6px 6px 4px 10px;
+    color: #727272;
+}
+
+#delete-btn {
+    padding: 6px 12px;
+    color: #a42424;
 }
 
 #delete-btn:hover {
-   color:white ; 
-   background-color:#800000 ; /* Dark red on hover */
+    color: whitesmoke;
+    background-color: #800000;
 }
 
+/* Confirm Delete Dialog */
 #confirm-delete button {
-   font-size :18 px ;
-   margin :8 px ;
-   padding :8 px ;
-   border:none ;
-   cursor:pointer ;
-   border-radius :4 px ;
-   color:white ; 
-   transition :background-color .3 s ease-in-out ; /* Smooth transition for confirm buttons */
+    font-size: 18px;
+    margin: 8px;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    color: whitesmoke;
 }
 
 #confirm-delete button#confirm-no {
-   background-color:#727272 ; 
+    background-color: #727272;
 }
 
 #confirm-delete button#confirm-yes {
-   background-color:#ff0000 ; 
+    background-color: #ff0000;
 }
 
 #confirm-delete button#confirm-yes:hover {
-   background-color:#a42424 ; 
+    background-color: #a42424;
 }
 
 #confirm-delete button#confirm-no:hover {
-   background-color:#404040 ; 
+    background-color: #404040;
+} 
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #contact-form-container {
+        width: 100%;
+        position: static;
+        border-right: none;
+    }
+    
+    #address-container {
+        margin-left: 0;
+    }
+    
+    #search-bar {
+        width: 100%;
+    }
+    
+    #contact-table,
+    #contact-list {
+        width: 100%;
+    }
 }
