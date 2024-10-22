@@ -1,125 +1,187 @@
-@import url("https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+/* Previous CSS remains same until form styling */
 
-body {
-    font-family: "Inria Sans", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    min-height: 100vh;
-    background-color: #121212; /* Dark OLED background */
-    color: #e0e0e0; /* Light text color for contrast */
-}
-
-#contact-form-container {
-    height: 100%;
-    width: 450px; 
-    position: fixed;
-    z-index: 1;
-    top: 0; 
-    left: 0;
-    background-color: rgba(30, 30, 30, 0.95); /* Darker background for the form */
-    border-right: 2px solid #404040; 
-    padding-top: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-}
-
-#error-message, #confirm-delete {
-    margin: 24px;
-    border: 2px solid #ff0000;
-    padding: 12px;
-    font-size: 16px;
-    text-align: center;
-    color: #ff0000;
-    background-color: rgba(255, 100, 100, 0.9); /* Red background with transparency */
-    border-radius: 12px; /* Increased border radius */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-.hidden {
-    display: none;
-}
-
-#contact-form {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    margin: 20px auto;    
-}
-
+/* Enhanced Form Styling */
 #contact-form input {
-    padding: 12px;
-    margin: 5px 10px;
+    padding: 14px 20px;
+    margin: 8px 10px;
     font-size: 16px;
-    border: 1px solid #444;
-    border-radius: 12px; /* Smooth edges */
-    background-color: #222; /* Dark input background */
-    color: #e0e0e0; /* Light text color */
-    transition: border-color 0.3s;
+    border: 1.5px solid rgba(255, 128, 0, 0.2);
+    border-radius: 16px;  /* Increased border radius */
+    background: var(--darker-gray);
+    color: var(--text-primary);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 #contact-form input:focus {
-    border-color: #ff6f00; /* McLaren orange */
     outline: none;
-    box-shadow: 0 0 5px rgba(255, 111, 0, 0.5);
-}
-
-#contact-form-title {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #ff6f00; /* McLaren orange */
-}
-
-#add-btn, #save-btn {
-    cursor: pointer;
-    background-color: rgba(255, 111, 0, 0.9); /* McLaren orange */
-    color: white;
-    border: none;
-    padding: 12px;
-    margin: 5px 10px;
-    font-size: 16px;
-    border-radius: 12px; /* Smooth edges */
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-#add-btn:hover, #save-btn:hover {
-    background-color: rgba(255, 111, 0, 1); /* Brighter McLaren orange */
+    box-shadow: 0 0 0 3px rgba(255, 128, 0, 0.2);
     transform: translateY(-2px);
+    border-color: var(--mclaren-orange);
 }
 
-.address-container {
-    position: absolute;
-    top: 0; 
-    width: 100%;
-    margin-left: 440px;
-}
-
-h1 {
-    background-color: #ff6f00; /* McLaren orange */
-    margin: 0;
-    padding: 28px;
-    text-align: left;
-    color: whitesmoke;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-#search-bar {
-    display: block;
-    width: 680px;
-    margin: 24px 0px 24px 24px;
-    padding: 8px;
+/* Modern Buttons */
+.button {
+    cursor: pointer;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 16px;  /* Smoother radius */
     font-size: 16px;
-    border: 1px solid #444;
-    border-radius: 12px; /* Smooth edges */
-    background-color: #222; /* Dark search bar background */
-    color: #e0e0e0; /* Light text color */
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(135deg, var(--mclaren-orange), #FF9933);
+    color: var(--dark-bg);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px var(--shadow-orange);
+    position: relative;
+    overflow: hidden;
 }
 
+.button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(255, 255, 255, 0.1), transparent);
+    transition: transform 0.3s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-orange);
+}
+
+.button:hover::before {
+    transform: translateY(-100%);
+}
+
+/* Action Buttons */
+.action-button {
+    padding: 10px 20px;
+    border: 1.5px solid var(--mclaren-orange);
+    border-radius: 12px;  /* Smoother radius */
+    background: var(--dark-gray);
+    color: var(--mclaren-orange);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.action-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 128, 0, 0.1),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.action-button:hover::before {
+    left: 100%;
+}
+
+/* Search Bar */
+#search-bar {
+    width: 680px;
+    padding: 16px 24px;
+    border: 1.5px solid rgba(255, 128, 0, 0.2);
+    border-radius: 20px;  /* Increased radius for smoother look */
+    background: var(--darker-gray);
+    color: var(--text-primary);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px var(--shadow-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#search-bar:focus {
+    outline: none;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-orange);
+    border-color: var(--mclaren-orange);
+}
+
+/* Error Messages */
+#error-message, #confirm-delete {
+    margin: 24px;
+    border-radius: 20px;  /* Smoother radius */
+    border: 1.5px solid var(--mclaren-orange);
+    padding: 20px;
+    font-size: 16px;
+    text-align: center;
+    color: var(--mclaren-orange);
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px var(--shadow-orange);
+}
+
+/* Table Styling Update */
 #contact-table {
-    width: 68%;
-    border-collapse: collapse;
-    margin: 20px;
+    width: 70%;
+    border-radius: 20px;  /* Smoother radius */
+    overflow: hidden;
+    box-shadow: 0 8px 30px var(--shadow-color);
+    background: var(--darker-gray);
 }
 
-#contact-table thead {
-    background-color: #333
+#contact-table th:first-child {
+    border-top-left-radius: 20px;
+}
+
+#contact-table th:last-child {
+    border-top-right-radius: 20px;
+}
+
+/* New Smooth Input Focus Effect */
+.input-wrapper {
+    position: relative;
+    margin: 10px 0;
+}
+
+.input-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--mclaren-orange);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.input-wrapper:focus-within::after {
+    width: calc(100% - 20px);
+}
+
+/* Smooth Button Press Effect */
+.button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px var(--shadow-orange);
+}
+
+/* Refined Hover States */
+.button, .action-button, #search-bar {
+    will-change: transform;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth Loading State */
+@keyframes smoothPulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.loading {
+    animation: smoothPulse 1.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
