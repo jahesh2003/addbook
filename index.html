@@ -1,125 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Address Book - Login</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            background-color: #f0f2f5;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .login-container {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #333;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        button {
-            width: 100%;
-            padding: 0.75rem;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-top: 1rem;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        .error-message {
-            color: red;
-            margin-top: 1rem;
-            text-align: center;
-            display: none;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>Simple User Address Book System</title>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Address Book Login</h2>
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" required>
-            </div>
-            <button type="submit">Login</button>
-            <p id="errorMessage" class="error-message">Invalid credentials. Please try again.</p>
-        </form>
-    </div>
-
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('errorMessage');
-
-            // Check credentials (username: admin, password: admin123)
-            if (username === 'admin' && password === 'admin123') {
-                // Store login status
-                localStorage.setItem('isLoggedIn', 'true');
-                // Redirect to dashboard
-                window.location.href = 'dashboard.html';
-            } else {
-                // Show error message
-                errorMessage.style.display = 'block';
-                // Clear password field
-                document.getElementById('password').value = '';
-            }
-        });
-
-        // Check if user is already logged in
-        window.onload = function() {
-            if (localStorage.getItem('isLoggedIn') === 'true') {
-                window.location.href = 'dashboard.html';
-            }
-        };
-    </script>
+    <header>
+        <h1>Simple User Address Book System</h1>
+    </header>
+    <main>
+        <section id="contact-display">
+            <h2 class="contacts">Contacts</h2>
+            <table>
+                <tr id="head">
+                    <thead>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Telephone</th>
+                        <th>Email</th>
+                        <th>Website</th>
+                    </thead>
+                </tr>
+                <tbody id="data">
+                    
+                </tbody>
+            </table>
+        </section>
+        <section id="new-contact">
+            <h2>Create a new contact</h2>
+            <form>
+                <div>
+                    <label for="name">Name:</label>
+                    <input id="name" type="text"  maxlength="15" required>
+                </div>
+                <div>
+                    <label for="add">Address:</label>
+                    <input id="add" type="text" maxlength="30" required>
+                </div>
+                <div>
+                    <label for="tel">Telephone:</label>
+                    <input id="tel" type="tel" maxlength="15" required>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input id="email" type="email" maxlength="30" required>
+                </div>
+                <div>
+                    <label for="url">Website:</label>
+                    <input id="url" type="url" maxlength="20">
+                </div>
+                <div>
+                    <button>Create contacts</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer>
+        
+    </footer>
+    <script src="./scripts/script.js"></script>
 </body>
 </html>
