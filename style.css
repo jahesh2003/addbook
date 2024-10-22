@@ -1,243 +1,232 @@
 @import url("https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 
-:root {
-    --mclaren-orange: #FF8000;
-    --mclaren-orange-hover: #FF9933;
-    --dark-bg: #000000;
-    --darker-gray: #111111;
-    --dark-gray: #1A1A1A;
-    --medium-gray: #2D2D2D;
-    --light-gray: #3D3D3D;
-    --text-primary: #FFFFFF;
-    --text-secondary: #BBBBBB;
-    --shadow-color: rgba(0, 0, 0, 0.5);
-    --shadow-orange: rgba(255, 128, 0, 0.2);
-}
-
 body {
     font-family: "Inria Sans", sans-serif;
     font-weight: 400;
+    font-style: normal;
     min-height: 100vh;
-    background: var(--dark-bg);
+    background-color: #000000; /* OLED black background */
+    color: #e0e0e0; /* Light text for dark theme */
     margin: 0;
     padding: 0;
-    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Glass Morphism Container */
 #contact-form-container {
     height: 100%;
-    width: 450px;
+    width: 450px; 
     position: fixed;
     z-index: 1;
-    top: 0;
+    top: 0; 
     left: 0;
-    background: rgba(26, 26, 26, 0.95);
-    backdrop-filter: blur(10px);
-    border-right: 1px solid rgba(255, 128, 0, 0.1);
-    box-shadow: 5px 0 15px var(--shadow-color);
+    background-color: #121212; /* Dark background */
+    border-right: 2px solid #404040; 
     padding-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); /* Deep shadow for depth */
 }
 
-/* Enhanced Form Styling */
+#error-message, #confirm-delete {
+    margin: 24px;
+    border: 2px solid #ff0000;
+    padding: 12px;
+    font-size: 16px;
+    text-align: center;
+    color: #ff6666;
+    background-color: rgba(255, 0, 0, 0.1); /* Subtle background for error messages */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3); 
+}
+
+.hidden {
+    display: none;
+}
+
 #contact-form {
     display: flex;
     flex-direction: column;
     width: 400px;
-    margin: 20px auto;
+    margin: 20px auto;    
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8); /* Stronger shadow for dark mode */
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #1a1a1a; /* Dark container background */
 }
 
 #contact-form input {
-    padding: 12px 16px;
-    margin: 8px 10px;
+    padding: 12px;
+    margin: 5px 10px;
     font-size: 16px;
-    border: 1px solid rgba(255, 128, 0, 0.2);
-    border-radius: 8px;
-    background: var(--darker-gray);
-    color: var(--text-primary);
-    transition: all 0.3s ease;
-}
-
-#contact-form input:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--mclaren-orange);
-    transform: translateY(-2px);
-    border-color: var(--mclaren-orange);
-}
-
-/* Modern Buttons */
-.button {
-    cursor: pointer;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    background: var(--mclaren-orange);
-    color: var(--dark-bg);
-    backdrop-filter: blur(5px);
-    box-shadow: 0 4px 15px var(--shadow-orange);
-}
-
-.button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px var(--shadow-orange);
-    background: var(--mclaren-orange-hover);
-}
-
-/* Table Styling */
-#contact-table {
-    width: 70%;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 30px var(--shadow-color);
-    background: var(--darker-gray);
-}
-
-#contact-table th {
-    background: linear-gradient(45deg, var(--dark-gray), var(--medium-gray));
-    color: var(--mclaren-orange);
-    padding: 16px;
-    font-weight: 500;
-}
-
-#contact-table td {
-    padding: 14px;
-    border-bottom: 1px solid rgba(255, 128, 0, 0.1);
-    color: var(--text-secondary);
-    transition: all 0.3s ease;
-}
-
-#contact-table tr:hover td {
-    background-color: rgba(255, 128, 0, 0.05);
-    color: var(--text-primary);
-}
-
-/* Action Buttons */
-.action-button {
-    padding: 8px 16px;
-    border: none;
+    border: 1px solid #555; /* Darker input borders */
+    background-color: #222; /* Dark input field */
+    color: #f0f0f0; /* Light text inside input */
     border-radius: 6px;
-    background: var(--dark-gray);
-    color: var(--mclaren-orange);
-    backdrop-filter: blur(5px);
     transition: all 0.3s ease;
 }
 
-#edit-btn {
-    border: 1px solid var(--mclaren-orange);
+#contact-form input:hover, #contact-form input:focus {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); 
+    border-color: #ff8000; /* McLaren orange focus border */
 }
 
-#delete-btn {
-    border: 1px solid var(--mclaren-orange);
+#contact-form-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff; /* Light text */
 }
 
-.action-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px var(--shadow-orange);
-    background: var(--mclaren-orange);
-    color: var(--dark-bg);
+#add-btn, #save-btn {
+    cursor: pointer;
+    background-color: #ff8000; /* McLaren orange */
+    color: white;
+    border: none;
+    padding: 12px;
+    margin: 5px 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
 }
 
-/* Search Bar */
+#add-btn:hover, #save-btn:hover {
+    background-color: #ff9d35; /* Lighter McLaren orange on hover */
+    box-shadow: 0 4px 12px rgba(255, 128, 0, 0.4); /* Orange shadow on hover */
+}
+
+.address-container {
+    position: absolute;
+    top: 0; 
+    width: 100%;
+    margin-left: 440px;
+}
+
+h1 {
+    background: linear-gradient(45deg, #ff8000, #ff9d35); /* McLaren orange gradient */
+    margin: 0;
+    padding: 28px;
+    text-align: left;
+    color: whitesmoke;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); 
+}
+
 #search-bar {
+    display: block;
     width: 680px;
-    padding: 12px 20px;
-    border: 1px solid rgba(255, 128, 0, 0.2);
-    border-radius: 30px;
-    background: var(--darker-gray);
-    color: var(--text-primary);
-    backdrop-filter: blur(5px);
-    box-shadow: 0 4px 15px var(--shadow-color);
-    transition: all 0.3s ease;
+    margin: 24px 0px 24px 24px;
+    padding: 8px;
+    font-size: 16px;
+    background-color: #222; /* Dark input */
+    color: #f0f0f0; /* Light text inside input */
+    border: 1px solid #555;
+    border-radius: 6px;
+    transition: box-shadow 0.3s ease;
 }
 
 #search-bar:focus {
-    outline: none;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px var(--shadow-orange);
-    border-color: var(--mclaren-orange);
+    box-shadow: 0 2px 8px rgba(255, 128, 0, 0.4); /* Orange shadow on focus */
 }
 
-/* Error Messages */
-#error-message, #confirm-delete {
-    margin: 24px;
-    border-radius: 8px;
-    border: 1px solid var(--mclaren-orange);
-    padding: 16px;
-    font-size: 16px;
-    text-align: center;
-    color: var(--mclaren-orange);
-    background: rgba(26, 26, 26, 0.95);
-    backdrop-filter: blur(5px);
-    box-shadow: 0 4px 15px var(--shadow-orange);
+#contact-table {
+    width: 68%;
+    border-collapse: collapse;
+    margin: 20px;
+    background-color: #1a1a1a; /* Dark table background */
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+#contact-table thead {
+    background-color: #222;
 }
 
-::-webkit-scrollbar-track {
-    background: var(--darker-gray);
+#contact-table th {
+    background-color: #333; /* Darker table headers */
+    color: white;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #555;
 }
 
-::-webkit-scrollbar-thumb {
-    background: var(--mclaren-orange);
+#contact-table tbody {
+    background-color: #1a1a1a;
+}
+
+#contact-table td {
+    padding: 12px;
+    border-bottom: 1px solid #444; /* Lighter dark for rows */
+    color: #e0e0e0; /* Light text for readability */
+}
+
+#contact-list {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #121212;
+    padding: 24px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+}
+
+#contact-list-headings {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    padding: 10px;
+    border-bottom: 2px solid #555;
+    color: #ff8000; /* McLaren orange headings */
+}
+
+#edit-btn, #delete-btn {
+    font-size: 24px;
+    margin-left: 12px;
+    border: none;
+    cursor: pointer;
     border-radius: 4px;
+    background-color: transparent;
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--mclaren-orange-hover);
+#edit-btn {
+    padding: 6px 6px 4px 10px;
+    color: #b3b3b3; /* Light gray for edit */
 }
 
-/* Glow Effects */
-.glow-effect {
-    position: relative;
+#delete-btn {
+    padding: 6px 12px;
+    color: #ff6666; /* Light red for delete */
 }
 
-.glow-effect::after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: var(--mclaren-orange);
-    filter: blur(15px);
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+#delete-btn:hover {
+    color: whitesmoke;
+    background-color: #a42424;
+    box-shadow: 0 2px 8px rgba(164, 36, 36, 0.4); 
 }
 
-.glow-effect:hover::after {
-    opacity: 0.2;
+#confirm-delete button {
+    font-size: 18px;
+    margin: 8px;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    color: whitesmoke;
+    transition: background-color 0.3s ease;
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+#confirm-delete button#confirm-no {
+    background-color: #727272;
 }
 
-.fade-in {
-    animation: fadeIn 0.3s ease forwards;
+#confirm-delete button#confirm-yes {
+    background-color: #ff0000;
 }
 
-/* Responsive Design */
-@media (max-width: 1200px) {
-    #contact-form-container {
-        width: 100%;
-        position: relative;
-    }
-    
-    .address-container {
-        margin-left: 0;
-    }
-    
-    #contact-table {
-        width: 90%;
-    }
+#confirm-delete button#confirm-yes:hover {
+    background-color: #a42424;
+    box-shadow: 0 4px 10px rgba(164, 36, 36, 0.4);
+}
+
+#confirm-delete button#confirm-no:hover {
+    background-color: #404040;
+    box-shadow: 0 4px 10px rgba(64, 64, 64, 0.4);
 }
