@@ -28,8 +28,8 @@ $(document).ready(function() {
             }
         });
         const phone = $('#phone').val();
-        if (isValid && phone.length !== 11) { // Checks if number is valid
-            showError('Please enter a valid 11-digit phone number.');
+        if (isValid && phone.length !== 10) { // Changed to 10 digits
+            showError('Please enter a valid 10-digit phone number.');
             isValid = false;
         }
         if (isValid && isDuplicate(phone, currentEditIndex)) { // Checks if number is already on the contact list
@@ -160,7 +160,7 @@ $(document).ready(function() {
     $('#confirm-yes').click(function () { // Confirm Delete
         contacts.splice(deleteIndex, 1); 
         displayContacts();
-        hideConfirmDelete()
+        hideConfirmDelete();
     });
 
     $('#confirm-no').click(function () { // Prevent Deletion
