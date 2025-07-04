@@ -2,47 +2,433 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>Address Book Demo</title>
-    <link rel="icon" type="image/png" href="favicon-32x32.png">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelEase | Sign In</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .bg-travel {
+            background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+        
+        .glass-card.dark {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .glass-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .glass-btn.dark {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glass-btn.dark:hover {
+            background: rgba(15, 23, 42, 0.7);
+        }
+        
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 0.5rem;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .input-field.dark {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.3);
+        }
+        
+        .input-field.dark:focus {
+            border-color: rgba(14, 165, 233, 0.6);
+        }
+        
+        .input-label {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        
+        .input-label.dark {
+            color: rgba(226, 232, 240, 0.7);
+        }
+        
+        .input-field:focus + .input-label,
+        .input-field:not(:placeholder-shown) + .input-label {
+            top: -0.6rem;
+            left: 0.8rem;
+            font-size: 0.75rem;
+            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            padding: 0 0.3rem;
+        }
+        
+        .input-field.dark:focus + .input-label,
+        .input-field.dark:not(:placeholder-shown) + .input-label {
+            background: linear-gradient(to bottom right, rgba(14, 165, 233, 0.9), rgba(56, 189, 248, 0.7));
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        
+        .forgot-password {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            position: relative;
+        }
+        
+        .forgot-password.dark {
+            color: rgba(226, 232, 240, 0.7);
+        }
+        
+        .forgot-password::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: rgba(255, 255, 255, 0.7);
+            transition: width 0.3s ease;
+        }
+        
+        .forgot-password.dark::after {
+            background-color: rgba(226, 232, 240, 0.7);
+        }
+        
+        .forgot-password:hover::after {
+            width: 100%;
+        }
+        
+        .signin-btn {
+            background: linear-gradient(to right, rgba(14, 165, 233, 0.9), rgba(56, 189, 248, 0.9));
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .signin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .signin-btn:active {
+            transform: translateY(0);
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-1px);
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 1.5rem 0;
+        }
+        
+        .divider.dark {
+            color: rgba(226, 232, 240, 0.7);
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .divider.dark::before,
+        .divider.dark::after {
+            border-bottom: 1px solid rgba(226, 232, 240, 0.2);
+        }
+        
+        .divider::before {
+            margin-right: 1rem;
+        }
+        
+        .divider::after {
+            margin-left: 1rem;
+        }
+        
+        .signup-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .signup-link.dark {
+            color: rgba(226, 232, 240, 0.9);
+        }
+        
+        .signup-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            transition: width 0.3s ease;
+        }
+        
+        .signup-link.dark::after {
+            background-color: rgba(226, 232, 240, 0.9);
+        }
+        
+        .signup-link:hover::after {
+            width: 100%;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .toggle-checkbox:checked {
+            right: 0;
+            background-color: #0ea5e9;
+        }
+        
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: rgba(14, 165, 233, 0.2);
+        }
+        
+        .toggle-label {
+            transition: background-color 0.3s ease;
+        }
+    </style>
 </head>
-<body>
-    <!-- Contact Form -->
-    <div id="contact-form-container">
-        <div id="error-message" class="hidden"></div> 
-        <form id="contact-form">
-            <span id="contact-form-title">Add Contact</span>
-            <input type="text" id="name" placeholder="Name" required>
-            <input type="text" id="surname" placeholder="Surname" required>
-            <input type="number" id="phone" placeholder="Phone Number" maxlength="11" required>
-            <input type="text" id="address" placeholder="Address" required>
-            <button id="add-btn">Add Contact</button>
-            <button id="save-btn" style="display:none;">Save Contact</button>
-        </form>
-        <form id="bulk-upload-form">
-            <input type="file" id="csv-file" accept=".csv">
-            <button id="upload-btn">Upload Contacts</button>
+<body class="min-h-screen bg-travel flex items-center justify-center p-4 transition-colors duration-300">
+    <div class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm"></div>
+    
+    <div class="glass-card rounded-2xl p-8 max-w-md w-full fade-in relative z-10">
+        <div class="flex justify-between items-center mb-8">
+            <div class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+                <span class="text-white text-xl font-semibold ml-2">TravelEase</span>
+            </div>
+            <div class="flex items-center">
+                <span class="text-white text-sm mr-2 hidden md:inline">Dark mode</span>
+                <div class="relative inline-block w-12 mr-2 align-middle select-none">
+                    <input type="checkbox" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer right-6"/>
+                    <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                </div>
+                <span class="text-white text-sm hidden md:inline">Light mode</span>
+            </div>
+        </div>
+        
+        <h1 class="text-2xl font-semibold text-white mb-2">Welcome back</h1>
+        <p class="text-white text-opacity-70 mb-8">Sign in to your TravelEase account</p>
+        
+        <form>
+            <div class="input-group">
+                <input type="text" id="email" class="input-field" placeholder=" " required>
+                <label for="email" class="input-label">Email or username</label>
+            </div>
+            
+            <div class="input-group">
+                <input type="password" id="password" class="input-field" placeholder=" " required>
+                <label for="password" class="input-label">Password</label>
+            </div>
+            
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center">
+                    <input type="checkbox" id="remember" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                    <label for="remember" class="ml-2 text-sm text-white">Remember me</label>
+                </div>
+                <a href="#" class="forgot-password text-sm">Forgot password?</a>
+            </div>
+            
+            <button type="submit" class="signin-btn w-full mb-6">Sign In</button>
+            
+            <div class="divider">or</div>
+            
+            <div class="flex flex-col space-y-3 mb-6">
+                <button type="button" class="glass-btn text-white social-btn">
+                    <i class="fab fa-google mr-2"></i> Continue with Google
+                </button>
+                <button type="button" class="glass-btn text-white social-btn">
+                    <i class="fab fa-apple mr-2"></i> Continue with Apple
+                </button>
+            </div>
+            
+            <p class="text-center text-white text-opacity-70 text-sm">
+                Don't have an account? <a href="#" class="signup-link">Sign Up</a>
+            </p>
         </form>
     </div>
-    <div class="address-container">
-        <h1 id="address-book-title">Address Book</h1>
-        <input type="text" id="search-bar" placeholder="Search...">
-        <table id="contact-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>Phone Number</th>
-                    <th>Address</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="contact-list"></tbody>
-        </table>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="script.js"></script>
+    
+    <script>
+        // Dark/light mode toggle
+        const toggle = document.getElementById('toggle');
+        const body = document.body;
+        const glassCard = document.querySelector('.glass-card');
+        const inputFields = document.querySelectorAll('.input-field');
+        const inputLabels = document.querySelectorAll('.input-label');
+        const forgotPassword = document.querySelector('.forgot-password');
+        const signupLink = document.querySelector('.signup-link');
+        const divider = document.querySelector('.divider');
+        const glassBtns = document.querySelectorAll('.glass-btn');
+        
+        // Check for saved theme preference or use system preference
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        const currentTheme = localStorage.getItem('theme');
+        
+        if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
+            body.classList.add('dark');
+            glassCard.classList.add('dark');
+            inputFields.forEach(field => field.classList.add('dark'));
+            inputLabels.forEach(label => label.classList.add('dark'));
+            forgotPassword.classList.add('dark');
+            signupLink.classList.add('dark');
+            divider.classList.add('dark');
+            glassBtns.forEach(btn => btn.classList.add('dark'));
+            toggle.checked = true;
+        }
+        
+        toggle.addEventListener('change', function() {
+            if (this.checked) {
+                body.classList.add('dark');
+                glassCard.classList.add('dark');
+                inputFields.forEach(field => field.classList.add('dark'));
+                inputLabels.forEach(label => label.classList.add('dark'));
+                forgotPassword.classList.add('dark');
+                signupLink.classList.add('dark');
+                divider.classList.add('dark');
+                glassBtns.forEach(btn => btn.classList.add('dark'));
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark');
+                glassCard.classList.remove('dark');
+                inputFields.forEach(field => field.classList.remove('dark'));
+                inputLabels.forEach(label => label.classList.remove('dark'));
+                forgotPassword.classList.remove('dark');
+                signupLink.classList.remove('dark');
+                divider.classList.remove('dark');
+                glassBtns.forEach(btn => btn.classList.remove('dark'));
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Floating label functionality
+        document.querySelectorAll('.input-field').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.nextElementSibling.classList.add('text-xs', '-top-3', 'left-2');
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.nextElementSibling.classList.remove('text-xs', '-top-3', 'left-2');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
