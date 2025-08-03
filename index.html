@@ -2,432 +2,670 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelEase | Sign In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>A March of Friendship</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            200: '#bae6fd',
-                            300: '#7dd3fc',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Elegant Google Fonts optimized for mobile -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+        /* Base responsive styling */
+        * {
+            box-sizing: border-box;
         }
-        
-        .bg-travel {
-            background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+
+        body {
+            font-family: 'Crimson Text', serif;
+            overflow: hidden;
+            /* New background image from the user's upload */
+            background-image: url('https://storage.googleapis.com/g.co/Bard/files/download.jpeg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-        }
-        
-        .glass-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-        }
-        
-        .glass-card.dark {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        
-        .glass-btn {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-        
-        .glass-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .glass-btn.dark {
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        
-        .glass-btn.dark:hover {
-            background: rgba(15, 23, 42, 0.7);
-        }
-        
-        .input-group {
             position: relative;
-            margin-bottom: 1.5rem;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            touch-action: manipulation;
+        }
+
+        /* Removed the old paper overlay and texture styles as they are replaced by the new background image. */
+
+        /* Responsive typography classes */
+        .playfair-display {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
         }
         
-        .input-field {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 0.5rem;
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+        .crimson-text {
+            font-family: 'Crimson Text', serif;
+            line-height: 1.6;
         }
         
-        .input-field.dark {
-            background: rgba(15, 23, 42, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #e2e8f0;
+        .great-vibes {
+            font-family: 'Great Vibes', cursive;
+            font-weight: 400;
         }
-        
-        .input-field:focus {
-            outline: none;
-            border-color: rgba(255, 255, 255, 0.6);
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.3);
+
+        .libre-baskerville {
+            font-family: 'Libre Baskerville', serif;
+            line-height: 1.5;
         }
-        
-        .input-field.dark:focus {
-            border-color: rgba(14, 165, 233, 0.6);
-        }
-        
-        .input-label {
+
+        /* Canvas positioning */
+        #animationCanvas {
             position: absolute;
-            top: 1rem;
-            left: 1rem;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1rem;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
             pointer-events: none;
-            transition: all 0.3s ease;
         }
-        
-        .input-label.dark {
-            color: rgba(226, 232, 240, 0.7);
-        }
-        
-        .input-field:focus + .input-label,
-        .input-field:not(:placeholder-shown) + .input-label {
-            top: -0.6rem;
-            left: 0.8rem;
-            font-size: 0.75rem;
-            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            padding: 0 0.3rem;
-        }
-        
-        .input-field.dark:focus + .input-label,
-        .input-field.dark:not(:placeholder-shown) + .input-label {
-            background: linear-gradient(to bottom right, rgba(14, 165, 233, 0.9), rgba(56, 189, 248, 0.7));
-            -webkit-background-clip: text;
-            background-clip: text;
-        }
-        
-        .forgot-password {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
+
+        /* Responsive content container */
+        .content-container {
             position: relative;
-        }
-        
-        .forgot-password.dark {
-            color: rgba(226, 232, 240, 0.7);
-        }
-        
-        .forgot-password::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: -2px;
-            left: 0;
-            background-color: rgba(255, 255, 255, 0.7);
-            transition: width 0.3s ease;
-        }
-        
-        .forgot-password.dark::after {
-            background-color: rgba(226, 232, 240, 0.7);
-        }
-        
-        .forgot-password:hover::after {
-            width: 100%;
-        }
-        
-        .signin-btn {
-            background: linear-gradient(to right, rgba(14, 165, 233, 0.9), rgba(56, 189, 248, 0.9));
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-        
-        .signin-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        
-        .signin-btn:active {
-            transform: translateY(0);
-        }
-        
-        .social-btn {
+            z-index: 3;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .social-btn:hover {
-            transform: translateY(-1px);
-        }
-        
-        .divider {
-            display: flex;
             align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
             text-align: center;
-            color: rgba(255, 255, 255, 0.7);
-            margin: 1.5rem 0;
+        }
+
+        /* Mobile-optimized animations */
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px) scale(0.98); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+
+        @keyframes fadeInScale {
+            from { 
+                opacity: 0; 
+                transform: scale(0.95); 
+            }
+            to { 
+                opacity: 1; 
+                transform: scale(1); 
+            }
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-3px); }
+        }
+
+        .fade-in {
+            animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
         
-        .divider.dark {
-            color: rgba(226, 232, 240, 0.7);
+        .fade-in-scale {
+            animation: fadeInScale 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
-        
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .divider.dark::before,
-        .divider.dark::after {
-            border-bottom: 1px solid rgba(226, 232, 240, 0.2);
-        }
-        
-        .divider::before {
-            margin-right: 1rem;
-        }
-        
-        .divider::after {
-            margin-left: 1rem;
-        }
-        
-        .signup-link {
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
-            font-weight: 500;
+
+        .delay-1 { animation-delay: 0.6s; opacity: 0; }
+        .delay-2 { animation-delay: 1.2s; opacity: 0; }
+        .delay-3 { animation-delay: 1.8s; opacity: 0; }
+
+        /* Mobile-optimized heart button */
+        .heart-button {
+            background: linear-gradient(135deg, #C72E5A 0%, #A0404C 50%, #8B4A47 100%);
+            border: none;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            box-shadow: 
+                0 8px 20px rgba(199, 46, 90, 0.25),
+                0 4px 12px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
+            overflow: hidden;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
-        
-        .signup-link.dark {
-            color: rgba(226, 232, 240, 0.9);
-        }
-        
-        .signup-link::after {
+
+        .heart-button::before {
             content: '';
             position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: -2px;
-            left: 0;
-            background-color: rgba(255, 255, 255, 0.9);
-            transition: width 0.3s ease;
-        }
-        
-        .signup-link.dark::after {
-            background-color: rgba(226, 232, 240, 0.9);
-        }
-        
-        .signup-link:hover::after {
+            top: 0;
+            left: -100%;
             width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: left 0.6s ease;
         }
-        
-        .fade-in {
-            animation: fadeIn 0.8s ease-in-out;
+
+        .heart-button:hover::before,
+        .heart-button:focus::before {
+            left: 100%;
         }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+
+        .heart-button:hover,
+        .heart-button:focus {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 
+                0 12px 25px rgba(199, 46, 90, 0.35),
+                0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .heart-button:active {
+            transform: translateY(0px) scale(1.02);
+            transition: all 0.1s ease;
+        }
+
+        /* Gentle pulse animation */
+        @keyframes gentlePulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 8px 20px rgba(199, 46, 90, 0.25);
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            50% { 
+                transform: scale(1.03);
+                box-shadow: 0 10px 25px rgba(199, 46, 90, 0.35);
             }
         }
-        
-        .toggle-checkbox:checked {
-            right: 0;
-            background-color: #0ea5e9;
+
+        .pulse-heart {
+            animation: gentlePulse 3s infinite ease-in-out;
         }
-        
-        .toggle-checkbox:checked + .toggle-label {
-            background-color: rgba(14, 165, 233, 0.2);
+
+        /* Enhanced text shadows */
+        .text-shadow-luxury {
+            text-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.08),
+                0 1px 2px rgba(160, 64, 76, 0.15);
         }
-        
-        .toggle-label {
-            transition: background-color 0.3s ease;
+
+        .text-shadow-soft {
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Responsive decorative elements */
+        .decorative-line {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #C72E5A, transparent);
+            margin: 0.75rem auto;
+            border-radius: 1px;
+        }
+
+        /* Enhanced final message styling */
+        .final-message {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.08),
+                0 8px 15px rgba(199, 46, 90, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            max-width: 90vw;
+        }
+
+        /* Responsive breakpoints */
+        @media (min-width: 640px) {
+            .content-container {
+                padding: 2rem;
+            }
+            
+            .heart-button {
+                width: 80px;
+                height: 80px;
+                font-size: 2.5rem;
+            }
+            
+            .decorative-line {
+                width: 100px;
+                height: 2px;
+                margin: 1rem auto;
+            }
+            
+            .final-message {
+                padding: 3rem;
+                max-width: 80vw;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .content-container {
+                padding: 3rem;
+            }
+            
+            .final-message {
+                max-width: 70vw;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .final-message {
+                max-width: 60vw;
+            }
+        }
+
+        /* Accessibility improvements */
+        @media (prefers-reduced-motion: reduce) {
+            .fade-in,
+            .fade-in-scale,
+            .pulse-heart,
+            .heart-button {
+                animation: none;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .text-shadow-luxury,
+            .text-shadow-soft {
+                text-shadow: none;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .heart-button:hover {
+                transform: none;
+                box-shadow: 0 8px 20px rgba(199, 46, 90, 0.25);
+            }
         }
     </style>
 </head>
-<body class="min-h-screen bg-travel flex items-center justify-center p-4 transition-colors duration-300">
-    <div class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm"></div>
-    
-    <div class="glass-card rounded-2xl p-8 max-w-md w-full fade-in relative z-10">
-        <div class="flex justify-between items-center mb-8">
-            <div class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                </svg>
-                <span class="text-white text-xl font-semibold ml-2">TravelEase</span>
-            </div>
-            <div class="flex items-center">
-                <span class="text-white text-sm mr-2 hidden md:inline">Dark mode</span>
-                <div class="relative inline-block w-12 mr-2 align-middle select-none">
-                    <input type="checkbox" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer right-6"/>
-                    <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+<body>
+    <canvas id="animationCanvas"></canvas>
+
+    <div class="content-container">
+        <!-- Main content with improved responsive design -->
+        <div id="main-card-content" class="w-full max-w-5xl">
+            <!-- Decorative element -->
+            <div class="decorative-line fade-in"></div>
+            
+            <!-- Responsive typography hierarchy -->
+            <h1 class="playfair-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-[#A0404C] fade-in delay-1 text-shadow-luxury mb-2 sm:mb-3">
+                In the quiet moments,
+            </h1>
+            <h2 class="playfair-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[#C72E5A] fade-in delay-1 text-shadow-luxury italic mb-4 sm:mb-6">
+                we found our grandest symphony.
+            </h2>
+
+            <!-- Decorative element -->
+            <div class="decorative-line fade-in delay-2"></div>
+
+            <!-- Responsive message content -->
+            <div class="fade-in-scale delay-2 mt-6 sm:mt-8 lg:mt-10 px-2 sm:px-4">
+                <div class="max-w-2xl mx-auto space-y-4 sm:space-y-6">
+                    <p class="libre-baskerville text-base sm:text-lg md:text-xl lg:text-2xl text-[#8B4A47] leading-relaxed text-shadow-soft">
+                        My dearest Purvi, our friendship feels like a classic novel, written with grace and depth. Each day is a new chapter, and I am so grateful to share this beautiful story with you.
+                    </p>
+                    
+                    <p class="great-vibes text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#C72E5A] text-shadow-soft">
+                        You are a masterpiece in my life ✨
+                    </p>
+                    
+                    <p class="crimson-text text-sm sm:text-base md:text-lg lg:text-xl text-[#8B4A47] italic opacity-90">
+                        Thank you for everything. Love always.
+                    </p>
                 </div>
-                <span class="text-white text-sm hidden md:inline">Light mode</span>
+            </div>
+
+            <!-- Mobile-optimized heart button section -->
+            <div class="fade-in delay-3 mt-8 sm:mt-12 lg:mt-16">
+                <p class="great-vibes text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#A0404C] mb-4 sm:mb-6 text-shadow-soft">
+                    Click the heart for a surprise 💫
+                </p>
+                <button id="confettiButton" class="heart-button pulse-heart" aria-label="Start heart animation">
+                    💖
+                </button>
+                <p class="crimson-text text-xs sm:text-sm text-[#8B4A47] mt-3 sm:mt-4 opacity-75">
+                    Tap to spread the love
+                </p>
             </div>
         </div>
-        
-        <h1 class="text-2xl font-semibold text-white mb-2">Welcome back</h1>
-        <p class="text-white text-opacity-70 mb-8">Sign in to your TravelEase account</p>
-        
-        <form>
-            <div class="input-group">
-                <input type="text" id="email" class="input-field" placeholder=" " required>
-                <label for="email" class="input-label">Email or username</label>
-            </div>
-            
-            <div class="input-group">
-                <input type="password" id="password" class="input-field" placeholder=" " required>
-                <label for="password" class="input-label">Password</label>
-            </div>
-            
-            <div class="flex items-center justify-between mb-6">
-                <div class="flex items-center">
-                    <input type="checkbox" id="remember" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
-                    <label for="remember" class="ml-2 text-sm text-white">Remember me</label>
+
+        <!-- Enhanced final message with responsive design -->
+        <div id="finalMessage" class="hidden w-full flex justify-center items-center min-h-screen absolute top-0 left-0 p-4">
+            <div class="final-message text-center">
+                <div class="decorative-line mb-4 sm:mb-6"></div>
+                
+                <h3 class="playfair-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-[#C72E5A] text-shadow-luxury mb-2 sm:mb-4">
+                    Happy Friendship Day
+                </h3>
+                
+                <h4 class="great-vibes text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#A0404C] text-shadow-soft mb-4 sm:mb-6">
+                    Purvi 💕✨
+                </h4>
+                
+                <div class="decorative-line mb-4 sm:mb-6"></div>
+                
+                <p class="libre-baskerville text-sm sm:text-base md:text-lg lg:text-xl text-[#8B4A47] italic leading-relaxed max-w-md mx-auto">
+                    "Friendship is the only cement that will ever hold the world together"
+                </p>
+                
+                <div class="mt-6 sm:mt-8">
+                    <div class="inline-block animate-bounce">
+                        <span class="text-2xl sm:text-3xl">💖</span>
+                    </div>
                 </div>
-                <a href="#" class="forgot-password text-sm">Forgot password?</a>
             </div>
-            
-            <button type="submit" class="signin-btn w-full mb-6">Sign In</button>
-            
-            <div class="divider">or</div>
-            
-            <div class="flex flex-col space-y-3 mb-6">
-                <button type="button" class="glass-btn text-white social-btn">
-                    <i class="fab fa-google mr-2"></i> Continue with Google
-                </button>
-                <button type="button" class="glass-btn text-white social-btn">
-                    <i class="fab fa-apple mr-2"></i> Continue with Apple
-                </button>
-            </div>
-            
-            <p class="text-center text-white text-opacity-70 text-sm">
-                Don't have an account? <a href="#" class="signup-link">Sign Up</a>
-            </p>
-        </form>
+        </div>
     </div>
-    
+
     <script>
-        // Dark/light mode toggle
-        const toggle = document.getElementById('toggle');
-        const body = document.body;
-        const glassCard = document.querySelector('.glass-card');
-        const inputFields = document.querySelectorAll('.input-field');
-        const inputLabels = document.querySelectorAll('.input-label');
-        const forgotPassword = document.querySelector('.forgot-password');
-        const signupLink = document.querySelector('.signup-link');
-        const divider = document.querySelector('.divider');
-        const glassBtns = document.querySelectorAll('.glass-btn');
+        // Enhanced canvas setup with mobile optimization
+        const canvas = document.getElementById('animationCanvas');
+        const ctx = canvas.getContext('2d');
         
-        // Check for saved theme preference or use system preference
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-        const currentTheme = localStorage.getItem('theme');
-        
-        if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
-            body.classList.add('dark');
-            glassCard.classList.add('dark');
-            inputFields.forEach(field => field.classList.add('dark'));
-            inputLabels.forEach(label => label.classList.add('dark'));
-            forgotPassword.classList.add('dark');
-            signupLink.classList.add('dark');
-            divider.classList.add('dark');
-            glassBtns.forEach(btn => btn.classList.add('dark'));
-            toggle.checked = true;
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
         
-        toggle.addEventListener('change', function() {
-            if (this.checked) {
-                body.classList.add('dark');
-                glassCard.classList.add('dark');
-                inputFields.forEach(field => field.classList.add('dark'));
-                inputLabels.forEach(label => label.classList.add('dark'));
-                forgotPassword.classList.add('dark');
-                signupLink.classList.add('dark');
-                divider.classList.add('dark');
-                glassBtns.forEach(btn => btn.classList.add('dark'));
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.classList.remove('dark');
-                glassCard.classList.remove('dark');
-                inputFields.forEach(field => field.classList.remove('dark'));
-                inputLabels.forEach(label => label.classList.remove('dark'));
-                forgotPassword.classList.remove('dark');
-                signupLink.classList.remove('dark');
-                divider.classList.remove('dark');
-                glassBtns.forEach(btn => btn.classList.remove('dark'));
-                localStorage.setItem('theme', 'light');
-            }
-        });
-        
-        // Floating label functionality
-        document.querySelectorAll('.input-field').forEach(input => {
-            input.addEventListener('focus', function() {
-                this.nextElementSibling.classList.add('text-xs', '-top-3', 'left-2');
-            });
+        resizeCanvas();
+
+        let hearts = [];
+        let fallingHearts = [];
+        let animationId;
+
+        // Optimized heart drawing for mobile performance
+        function drawHeart(ctx, x, y, size) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.scale(size / 12, size / 12);
             
-            input.addEventListener('blur', function() {
-                if (!this.value) {
-                    this.nextElementSibling.classList.remove('text-xs', '-top-3', 'left-2');
+            ctx.beginPath();
+            ctx.moveTo(0, 4);
+            ctx.bezierCurveTo(-6, -2, -12, 3, 0, 12);
+            ctx.bezierCurveTo(12, 3, 6, -2, 0, 4);
+            ctx.closePath();
+            
+            ctx.restore();
+        }
+
+        function drawHeartMath(ctx, x, y, size) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.scale(size / 25, size / 25);
+            
+            ctx.beginPath();
+            for (let t = 0; t <= Math.PI * 2; t += 0.15) { // Reduced precision for mobile
+                const heartX = 16 * Math.sin(t) ** 3;
+                const heartY = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+                
+                if (t === 0) {
+                    ctx.moveTo(heartX, heartY);
+                } else {
+                    ctx.lineTo(heartX, heartY);
                 }
+            }
+            ctx.closePath();
+            
+            ctx.restore();
+        }
+
+        // Mobile-optimized background hearts
+        class Heart {
+            constructor(x, y, size, speed) {
+                this.x = x;
+                this.y = y;
+                this.size = size;
+                this.speed = speed;
+                this.opacity = Math.random() * 0.12 + 0.03;
+                this.angle = Math.random() * 360;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.2;
+                this.pulsePhase = Math.random() * Math.PI * 2;
+                this.pulseSpeed = 0.01;
+                
+                const colors = ['rgba(160, 64, 76, ', 'rgba(199, 46, 90, ', 'rgba(139, 74, 71, '];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color + this.opacity + ')';
+                
+                const pulseScale = 1 + Math.sin(this.pulsePhase) * 0.1;
+                const currentSize = this.size * pulseScale;
+                
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle * Math.PI / 180);
+                
+                drawHeart(ctx, 0, 0, currentSize);
+                ctx.fill();
+                
+                ctx.restore();
+            }
+
+            update() {
+                this.y += this.speed;
+                this.angle += this.rotationSpeed;
+                this.pulsePhase += this.pulseSpeed;
+                
+                if (this.y > canvas.height + this.size) {
+                    this.y = -this.size;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+        }
+
+        // Enhanced falling hearts with mobile optimization
+        const fallingHeartColors = ['#C72E5A', '#A0404C', '#DA70D6', '#FF69B4', '#F8BBD9'];
+
+        class FallingHeart {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 20 + 8;
+                this.color = fallingHeartColors[Math.floor(Math.random() * fallingHeartColors.length)];
+                this.vx = (Math.random() - 0.5) * 2.5;
+                this.vy = Math.random() * 1.5 + 0.5;
+                this.gravity = 0.02;
+                this.opacity = 1;
+                this.angle = Math.random() * 360;
+                this.rotation = (Math.random() - 0.5) * 2;
+                this.bounce = 0.5;
+                this.wobble = Math.random() * 0.8 + 0.3;
+                this.wobblePhase = Math.random() * Math.PI * 2;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+                
+                const wobbleX = Math.sin(this.wobblePhase) * this.wobble;
+                
+                ctx.translate(this.x + wobbleX, this.y);
+                ctx.rotate(this.angle * Math.PI / 180);
+                
+                drawHeartMath(ctx, 0, 0, this.size);
+                ctx.fill();
+                
+                ctx.restore();
+            }
+
+            update() {
+                this.vy += this.gravity;
+                this.x += this.vx;
+                this.y += this.vy;
+                this.angle += this.rotation;
+                this.wobblePhase += 0.06;
+                
+                if (this.x <= 0 || this.x >= canvas.width) {
+                    this.vx *= -this.bounce;
+                    this.x = Math.max(0, Math.min(canvas.width, this.x));
+                }
+                
+                this.opacity -= 0.0025;
+                this.vx *= 0.999;
+                this.vy *= 0.998;
+            }
+        }
+
+        function initHearts() {
+            hearts = [];
+            // Fewer hearts on mobile for better performance
+            const heartCount = window.innerWidth < 768 ? 8 : 12;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const size = Math.random() * 8 + 4;
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const speed = Math.random() * 0.25 + 0.1;
+                hearts.push(new Heart(x, y, size, speed));
+            }
+        }
+
+        function triggerFallingHearts() {
+            // Optimized for mobile performance
+            const isMobile = window.innerWidth < 768;
+            const waves = isMobile ? 
+                [{ count: 80, delay: 0 }, { count: 100, delay: 300 }, { count: 60, delay: 600 }] :
+                [{ count: 120, delay: 0 }, { count: 150, delay: 200 }, { count: 180, delay: 400 }, { count: 80, delay: 700 }];
+            
+            waves.forEach(wave => {
+                setTimeout(() => {
+                    for (let i = 0; i < wave.count; i++) {
+                        const x = Math.random() * canvas.width;
+                        const y = -Math.random() * 120 - 40;
+                        fallingHearts.push(new FallingHeart(x, y));
+                    }
+                }, wave.delay);
             });
+        }
+
+        // Performance-optimized animation loop
+        let lastTime = 0;
+        let frameCount = 0;
+        
+        function animate(currentTime) {
+            const deltaTime = currentTime - lastTime;
+            lastTime = currentTime;
+            frameCount++;
+            
+            // Skip frames on slower devices for better performance
+            if (frameCount % 2 === 0 && window.innerWidth < 480) {
+                animationId = requestAnimationFrame(animate);
+                return;
+            }
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Background hearts
+            hearts.forEach(heart => {
+                heart.update();
+                heart.draw();
+            });
+
+            // Falling hearts with efficient cleanup
+            for (let i = fallingHearts.length - 1; i >= 0; i--) {
+                const particle = fallingHearts[i];
+                particle.update();
+                particle.draw();
+                
+                if (particle.opacity <= 0 || particle.y > canvas.height + 100) {
+                    fallingHearts.splice(i, 1);
+                }
+            }
+
+            animationId = requestAnimationFrame(animate);
+        }
+
+        // Enhanced event listeners with mobile optimization
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                resizeCanvas();
+                initHearts();
+            }, 250);
+        });
+
+        // Enhanced button interaction
+        const button = document.getElementById('confettiButton');
+        let isAnimating = false;
+
+        button.addEventListener('click', handleButtonClick);
+        button.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            this.style.transform = 'scale(0.95)';
+        });
+
+        button.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            this.style.transform = '';
+            handleButtonClick(e);
+        });
+
+        function handleButtonClick(e) {
+            if (isAnimating) return;
+            
+            e.preventDefault();
+            isAnimating = true;
+            
+            // Enhanced button feedback
+            button.style.transform = 'scale(0.9)';
+            button.style.transition = 'transform 0.1s ease';
+            
+            setTimeout(() => {
+                button.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    button.style.transform = '';
+                    button.style.transition = '';
+                }, 200);
+            }, 100);
+            
+            triggerFallingHearts();
+            
+            const mainContent = document.getElementById('main-card-content');
+            const finalMessage = document.getElementById('finalMessage');
+
+            // Smooth, mobile-optimized transition
+            mainContent.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            mainContent.style.opacity = '0';
+            mainContent.style.transform = 'scale(0.95) translateY(20px)';
+            
+            setTimeout(() => {
+                mainContent.style.display = 'none';
+                finalMessage.style.display = 'flex';
+                finalMessage.style.opacity = '0';
+                finalMessage.style.transform = 'scale(0.9)';
+                finalMessage.style.transition = 'all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                
+                setTimeout(() => {
+                    finalMessage.style.opacity = '1';
+                    finalMessage.style.transform = 'scale(1)';
+                    isAnimating = false;
+                }, 100);
+            }, 800);
+        }
+
+        // Initialize and start
+        initHearts();
+        animationId = requestAnimationFrame(animate);
+
+        // Pause animation when page is not visible (battery saving)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                cancelAnimationFrame(animationId);
+            } else {
+                animationId = requestAnimationFrame(animate);
+            }
         });
     </script>
 </body>
